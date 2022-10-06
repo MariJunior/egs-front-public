@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  min-height: 100%;
+  display: flex;
+  width: 100%;
+}
+
+body {
+  flex-grow: 1;
+  width: 100%;
+  font-family: var(--font-families-ubuntu);
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--colors-white);
+  background-image: linear-gradient(180.02deg, rgba(0, 148, 255, 0.1) 0.02%, rgba(28, 145, 255, 0) 17.2%);
+}
+
+:root {
+  --colors-blue: #1b8eff;
+  --colors-lightblue: #e8f4ff;
+  --colors-darkblue: #195084;
+  --colors-cyan: #00d5e2;
+  --colors-lightgrey: #e2f2ff;
+  --colors-pink: #ff4fa3;
+  --colors-grey: #a3a7b7;
+  --colors-white: #ffffff;
+  --colors-black: #000000;
+  --colors-shadow: #0066ff80;
+
+  --radial-gradients-turquoise: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(84, 245, 255, 0.7) 0%,
+    rgba(120, 252, 244, 0) 100%
+  );
+  --radial-gradients-pink: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(255, 173, 222, 0.9) 0%,
+    rgba(249, 111, 252, 0) 100%
+  );
+  --radial-gradients-blue: radial-gradient(50% 50% at 50% 50%, rgba(68, 165, 255, 0.9) 0%, rgba(158, 191, 255, 0) 100%);
+
+  --font-families-gilroy: 'Gilroy', 'Helvetica', 'Arial', sans-serif;
+  --font-families-ubuntu: 'Ubuntu', 'Helvetica Neue', 'Arial', sans-serif;
+
+  --breakpoints-sm: 375px;
+  --breakpoints-md: 768px;
+  --breakpoints-lg: 1300px;
+}

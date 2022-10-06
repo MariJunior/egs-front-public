@@ -1,0 +1,34 @@
+import { Meta, Story } from '@storybook/react';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
+
+import { AuthorizationOverlay, AuthorizationOverlayProps } from './authorization-overlay';
+
+export default {
+  component: AuthorizationOverlay,
+  title: 'Content/Authorization/AuthorizationOverlay',
+  decorators: [withKnobs],
+} as Meta;
+
+const TestOverlayChildren = () => {
+  return (
+    <div
+      style={{
+        margin: '0 auto',
+        padding: '20px',
+        backgroundColor: 'white',
+        borderRadius: '50px',
+      }}
+    >
+      <h2>Overlay content will be here!</h2>
+      <p>Some additive content</p>
+    </div>
+  );
+};
+
+const AuthorizationOverlayStory: Story<AuthorizationOverlayProps> = (props: AuthorizationOverlayProps) => (
+  <AuthorizationOverlay {...props} opened={boolean('opened', false)}>
+    <TestOverlayChildren />
+  </AuthorizationOverlay>
+);
+
+export const Default = AuthorizationOverlayStory.bind({});

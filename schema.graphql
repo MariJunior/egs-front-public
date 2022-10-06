@@ -1,0 +1,1473 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+union ApplicationApplicationLinksDynamicZone =
+    ComponentApplicationLinkAppStoreLink
+  | ComponentApplicationLinkChatBotLink
+  | ComponentApplicationLinkGooglePlayLink
+  | ComponentApplicationLinkHomepageLink
+  | ComponentApplicationLinkVkMiniAppLink
+
+union ApplicationContactsDynamicZone = ComponentContactsContactEmail | ComponentContactsContactPhone
+
+union Morph =
+    Application
+  | ApplicationAggregator
+  | ApplicationConnection
+  | ApplicationConnectionCategory
+  | ApplicationConnectionCover
+  | ApplicationConnectionCreated_at
+  | ApplicationConnectionId
+  | ApplicationConnectionLogo
+  | ApplicationConnectionName
+  | ApplicationConnectionPublished_at
+  | ApplicationConnectionShortDescription
+  | ApplicationConnectionUpdated_at
+  | ApplicationGroupBy
+  | ComponentApplicationApplicationProperties
+  | ComponentApplicationLinkAppStoreLink
+  | ComponentApplicationLinkChatBotLink
+  | ComponentApplicationLinkGooglePlayLink
+  | ComponentApplicationLinkHomepageLink
+  | ComponentApplicationLinkVkMiniAppLink
+  | ComponentCardsPrimaryCard
+  | ComponentContactsContactEmail
+  | ComponentContactsContactPhone
+  | FeaturedBanner
+  | NewsArticle
+  | NewsArticleAggregator
+  | NewsArticleConnection
+  | NewsArticleConnectionBody
+  | NewsArticleConnectionCover
+  | NewsArticleConnectionCreated_at
+  | NewsArticleConnectionId
+  | NewsArticleConnectionPublished_at
+  | NewsArticleConnectionShortDescription
+  | NewsArticleConnectionTitle
+  | NewsArticleConnectionUpdated_at
+  | NewsArticleGroupBy
+  | PrimaryBanner
+  | PrimaryBannerAggregator
+  | PrimaryBannerConnection
+  | PrimaryBannerConnectionApplication
+  | PrimaryBannerConnectionCreated_at
+  | PrimaryBannerConnectionDescription
+  | PrimaryBannerConnectionId
+  | PrimaryBannerConnectionImage
+  | PrimaryBannerConnectionLink
+  | PrimaryBannerConnectionPriority
+  | PrimaryBannerConnectionTitle
+  | PrimaryBannerConnectionUpdated_at
+  | PrimaryBannerGroupBy
+  | PrimaryCard
+  | SocialRole
+  | SocialRoleAggregator
+  | SocialRoleConnection
+  | SocialRoleConnectionCreated_at
+  | SocialRoleConnectionDescription
+  | SocialRoleConnectionIcon
+  | SocialRoleConnectionId
+  | SocialRoleConnectionName
+  | SocialRoleConnectionUpdated_at
+  | SocialRoleGroupBy
+  | UploadFile
+  | UploadFileAggregator
+  | UploadFileAggregatorAvg
+  | UploadFileAggregatorMax
+  | UploadFileAggregatorMin
+  | UploadFileAggregatorSum
+  | UploadFileConnection
+  | UploadFileConnectionAlternativeText
+  | UploadFileConnectionCaption
+  | UploadFileConnectionCreated_at
+  | UploadFileConnectionExt
+  | UploadFileConnectionFormats
+  | UploadFileConnectionHash
+  | UploadFileConnectionHeight
+  | UploadFileConnectionId
+  | UploadFileConnectionMime
+  | UploadFileConnectionName
+  | UploadFileConnectionPreviewUrl
+  | UploadFileConnectionProvider
+  | UploadFileConnectionProvider_metadata
+  | UploadFileConnectionSize
+  | UploadFileConnectionUpdated_at
+  | UploadFileConnectionUrl
+  | UploadFileConnectionWidth
+  | UploadFileGroupBy
+  | UserPermissionsPasswordPayload
+  | UsersPermissionsLoginPayload
+  | UsersPermissionsMe
+  | UsersPermissionsMeRole
+  | UsersPermissionsPermission
+  | UsersPermissionsRole
+  | UsersPermissionsRoleAggregator
+  | UsersPermissionsRoleConnection
+  | UsersPermissionsRoleConnectionDescription
+  | UsersPermissionsRoleConnectionId
+  | UsersPermissionsRoleConnectionName
+  | UsersPermissionsRoleConnectionType
+  | UsersPermissionsRoleGroupBy
+  | UsersPermissionsUser
+  | UsersPermissionsUserAggregator
+  | UsersPermissionsUserConnection
+  | UsersPermissionsUserConnectionBlocked
+  | UsersPermissionsUserConnectionConfirmed
+  | UsersPermissionsUserConnectionCreated_at
+  | UsersPermissionsUserConnectionEmail
+  | UsersPermissionsUserConnectionId
+  | UsersPermissionsUserConnectionProvider
+  | UsersPermissionsUserConnectionRole
+  | UsersPermissionsUserConnectionUpdated_at
+  | UsersPermissionsUserConnectionUsername
+  | UsersPermissionsUserGroupBy
+  | createApplicationPayload
+  | createNewsArticlePayload
+  | createPrimaryBannerPayload
+  | createRolePayload
+  | createSocialRolePayload
+  | createUserPayload
+  | deleteApplicationPayload
+  | deleteFeaturedBannerPayload
+  | deleteFilePayload
+  | deleteNewsArticlePayload
+  | deletePrimaryBannerPayload
+  | deletePrimaryCardPayload
+  | deleteRolePayload
+  | deleteSocialRolePayload
+  | deleteUserPayload
+  | updateApplicationPayload
+  | updateFeaturedBannerPayload
+  | updateNewsArticlePayload
+  | updatePrimaryBannerPayload
+  | updatePrimaryCardPayload
+  | updateRolePayload
+  | updateSocialRolePayload
+  | updateUserPayload
+
+union PrimaryCardCardsDynamicZone = ComponentCardsPrimaryCard
+
+type AdminUser {
+  firstname: String!
+  id: ID!
+  lastname: String!
+  username: String
+}
+
+"Приложение."
+type Application {
+  ApplicationLinks: [ApplicationApplicationLinksDynamicZone]
+  ApplicationProperties: [ComponentApplicationApplicationProperties]
+  Category: ENUM_APPLICATION_CATEGORY
+  Contacts: [ApplicationContactsDynamicZone]
+  Cover: UploadFile
+  Logo: UploadFile
+  Name: String!
+  PrimaryBanners(limit: Int, sort: String, start: Int, where: JSON): [PrimaryBanner]
+  ShortDescription: String!
+  created_at: DateTime!
+  id: ID!
+  published_at: DateTime
+  social_roles(limit: Int, sort: String, start: Int, where: JSON): [SocialRole]
+  updated_at: DateTime!
+}
+
+type ApplicationAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ApplicationConnection {
+  aggregate: ApplicationAggregator
+  groupBy: ApplicationGroupBy
+  values: [Application]
+}
+
+type ApplicationConnectionCategory {
+  connection: ApplicationConnection
+  key: String
+}
+
+type ApplicationConnectionCover {
+  connection: ApplicationConnection
+  key: ID
+}
+
+type ApplicationConnectionCreated_at {
+  connection: ApplicationConnection
+  key: DateTime
+}
+
+type ApplicationConnectionId {
+  connection: ApplicationConnection
+  key: ID
+}
+
+type ApplicationConnectionLogo {
+  connection: ApplicationConnection
+  key: ID
+}
+
+type ApplicationConnectionName {
+  connection: ApplicationConnection
+  key: String
+}
+
+type ApplicationConnectionPublished_at {
+  connection: ApplicationConnection
+  key: DateTime
+}
+
+type ApplicationConnectionShortDescription {
+  connection: ApplicationConnection
+  key: String
+}
+
+type ApplicationConnectionUpdated_at {
+  connection: ApplicationConnection
+  key: DateTime
+}
+
+type ApplicationGroupBy {
+  Category: [ApplicationConnectionCategory]
+  Cover: [ApplicationConnectionCover]
+  Logo: [ApplicationConnectionLogo]
+  Name: [ApplicationConnectionName]
+  ShortDescription: [ApplicationConnectionShortDescription]
+  created_at: [ApplicationConnectionCreated_at]
+  id: [ApplicationConnectionId]
+  published_at: [ApplicationConnectionPublished_at]
+  updated_at: [ApplicationConnectionUpdated_at]
+}
+
+type ComponentApplicationApplicationProperties {
+  Link: String
+  Title: String!
+  Value: String!
+  id: ID!
+}
+
+type ComponentApplicationLinkAppStoreLink {
+  Link: String!
+  id: ID!
+}
+
+type ComponentApplicationLinkChatBotLink {
+  Link: String!
+  id: ID!
+}
+
+type ComponentApplicationLinkGooglePlayLink {
+  Link: String!
+  id: ID!
+}
+
+type ComponentApplicationLinkHomepageLink {
+  Link: String!
+  id: ID!
+}
+
+type ComponentApplicationLinkVkMiniAppLink {
+  Link: String!
+  id: ID!
+}
+
+type ComponentCardsPrimaryCard {
+  Description: String
+  Image: UploadFile
+  Link: String
+  Title: String!
+  id: ID!
+}
+
+type ComponentContactsContactEmail {
+  Email: String!
+  Title: String
+  id: ID!
+}
+
+type ComponentContactsContactPhone {
+  Phone: String!
+  Title: String
+  id: ID!
+}
+
+type FeaturedBanner {
+  created_at: DateTime!
+  id: ID!
+  primary_banner: PrimaryBanner
+  updated_at: DateTime!
+}
+
+type Mutation {
+  createApplication(input: createApplicationInput): createApplicationPayload
+  createNewsArticle(input: createNewsArticleInput): createNewsArticlePayload
+  createPrimaryBanner(input: createPrimaryBannerInput): createPrimaryBannerPayload
+  "Create a new role"
+  createRole(input: createRoleInput): createRolePayload
+  createSocialRole(input: createSocialRoleInput): createSocialRolePayload
+  "Create a new user"
+  createUser(input: createUserInput): createUserPayload
+  deleteApplication(input: deleteApplicationInput): deleteApplicationPayload
+  deleteFeaturedBanner: deleteFeaturedBannerPayload
+  "Delete one file"
+  deleteFile(input: deleteFileInput): deleteFilePayload
+  deleteNewsArticle(input: deleteNewsArticleInput): deleteNewsArticlePayload
+  deletePrimaryBanner(input: deletePrimaryBannerInput): deletePrimaryBannerPayload
+  deletePrimaryCard: deletePrimaryCardPayload
+  "Delete an existing role"
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+  deleteSocialRole(input: deleteSocialRoleInput): deleteSocialRolePayload
+  "Delete an existing user"
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
+  forgotPassword(email: String!): UserPermissionsPasswordPayload
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  multipleUpload(field: String, files: [Upload]!, ref: String, refId: ID, source: String): [UploadFile]!
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+  resetPassword(code: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
+  updateApplication(input: updateApplicationInput): updateApplicationPayload
+  updateFeaturedBanner(input: updateFeaturedBannerInput): updateFeaturedBannerPayload
+  updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
+  updateNewsArticle(input: updateNewsArticleInput): updateNewsArticlePayload
+  updatePrimaryBanner(input: updatePrimaryBannerInput): updatePrimaryBannerPayload
+  updatePrimaryCard(input: updatePrimaryCardInput): updatePrimaryCardPayload
+  "Update an existing role"
+  updateRole(input: updateRoleInput): updateRolePayload
+  updateSocialRole(input: updateSocialRoleInput): updateSocialRolePayload
+  "Update an existing user"
+  updateUser(input: updateUserInput): updateUserPayload
+  upload(field: String, file: Upload!, info: FileInfoInput, ref: String, refId: ID, source: String): UploadFile!
+}
+
+"Новостная статья."
+type NewsArticle {
+  Body: String!
+  Cover: UploadFile
+  ShortDescription: String!
+  Title: String!
+  created_at: DateTime!
+  id: ID!
+  published_at: DateTime
+  updated_at: DateTime!
+}
+
+type NewsArticleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type NewsArticleConnection {
+  aggregate: NewsArticleAggregator
+  groupBy: NewsArticleGroupBy
+  values: [NewsArticle]
+}
+
+type NewsArticleConnectionBody {
+  connection: NewsArticleConnection
+  key: String
+}
+
+type NewsArticleConnectionCover {
+  connection: NewsArticleConnection
+  key: ID
+}
+
+type NewsArticleConnectionCreated_at {
+  connection: NewsArticleConnection
+  key: DateTime
+}
+
+type NewsArticleConnectionId {
+  connection: NewsArticleConnection
+  key: ID
+}
+
+type NewsArticleConnectionPublished_at {
+  connection: NewsArticleConnection
+  key: DateTime
+}
+
+type NewsArticleConnectionShortDescription {
+  connection: NewsArticleConnection
+  key: String
+}
+
+type NewsArticleConnectionTitle {
+  connection: NewsArticleConnection
+  key: String
+}
+
+type NewsArticleConnectionUpdated_at {
+  connection: NewsArticleConnection
+  key: DateTime
+}
+
+type NewsArticleGroupBy {
+  Body: [NewsArticleConnectionBody]
+  Cover: [NewsArticleConnectionCover]
+  ShortDescription: [NewsArticleConnectionShortDescription]
+  Title: [NewsArticleConnectionTitle]
+  created_at: [NewsArticleConnectionCreated_at]
+  id: [NewsArticleConnectionId]
+  published_at: [NewsArticleConnectionPublished_at]
+  updated_at: [NewsArticleConnectionUpdated_at]
+}
+
+"Слайдер из баннеров на главной странице."
+type PrimaryBanner {
+  Application: Application
+  Description: String
+  Image: UploadFile
+  Link: String!
+  Priority: ENUM_PRIMARYBANNER_PRIORITY!
+  Title: String!
+  created_at: DateTime!
+  id: ID!
+  updated_at: DateTime!
+}
+
+type PrimaryBannerAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type PrimaryBannerConnection {
+  aggregate: PrimaryBannerAggregator
+  groupBy: PrimaryBannerGroupBy
+  values: [PrimaryBanner]
+}
+
+type PrimaryBannerConnectionApplication {
+  connection: PrimaryBannerConnection
+  key: ID
+}
+
+type PrimaryBannerConnectionCreated_at {
+  connection: PrimaryBannerConnection
+  key: DateTime
+}
+
+type PrimaryBannerConnectionDescription {
+  connection: PrimaryBannerConnection
+  key: String
+}
+
+type PrimaryBannerConnectionId {
+  connection: PrimaryBannerConnection
+  key: ID
+}
+
+type PrimaryBannerConnectionImage {
+  connection: PrimaryBannerConnection
+  key: ID
+}
+
+type PrimaryBannerConnectionLink {
+  connection: PrimaryBannerConnection
+  key: String
+}
+
+type PrimaryBannerConnectionPriority {
+  connection: PrimaryBannerConnection
+  key: String
+}
+
+type PrimaryBannerConnectionTitle {
+  connection: PrimaryBannerConnection
+  key: String
+}
+
+type PrimaryBannerConnectionUpdated_at {
+  connection: PrimaryBannerConnection
+  key: DateTime
+}
+
+type PrimaryBannerGroupBy {
+  Application: [PrimaryBannerConnectionApplication]
+  Description: [PrimaryBannerConnectionDescription]
+  Image: [PrimaryBannerConnectionImage]
+  Link: [PrimaryBannerConnectionLink]
+  Priority: [PrimaryBannerConnectionPriority]
+  Title: [PrimaryBannerConnectionTitle]
+  created_at: [PrimaryBannerConnectionCreated_at]
+  id: [PrimaryBannerConnectionId]
+  updated_at: [PrimaryBannerConnectionUpdated_at]
+}
+
+type PrimaryCard {
+  Cards: [PrimaryCardCardsDynamicZone]!
+  created_at: DateTime!
+  id: ID!
+  updated_at: DateTime!
+}
+
+type Query {
+  application(id: ID!, publicationState: PublicationState): Application
+  applications(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Application]
+  applicationsConnection(limit: Int, sort: String, start: Int, where: JSON): ApplicationConnection
+  applicationsCount(where: JSON): Int!
+  featuredBanner(publicationState: PublicationState): FeaturedBanner
+  files(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UploadFile]
+  filesConnection(limit: Int, sort: String, start: Int, where: JSON): UploadFileConnection
+  me: UsersPermissionsMe
+  newsArticle(id: ID!, publicationState: PublicationState): NewsArticle
+  newsArticles(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [NewsArticle]
+  newsArticlesConnection(limit: Int, sort: String, start: Int, where: JSON): NewsArticleConnection
+  newsArticlesCount(where: JSON): Int!
+  primaryBanner(id: ID!, publicationState: PublicationState): PrimaryBanner
+  primaryBanners(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [PrimaryBanner]
+  primaryBannersConnection(limit: Int, sort: String, start: Int, where: JSON): PrimaryBannerConnection
+  primaryCard(publicationState: PublicationState): PrimaryCard
+  role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
+  "Retrieve all the existing roles. You can't apply filters on this query."
+  roles(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UsersPermissionsRole]
+  rolesConnection(limit: Int, sort: String, start: Int, where: JSON): UsersPermissionsRoleConnection
+  socialRole(id: ID!, publicationState: PublicationState): SocialRole
+  socialRoles(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [SocialRole]
+  socialRolesConnection(limit: Int, sort: String, start: Int, where: JSON): SocialRoleConnection
+  user(id: ID!, publicationState: PublicationState): UsersPermissionsUser
+  users(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UsersPermissionsUser]
+  usersConnection(limit: Int, sort: String, start: Int, where: JSON): UsersPermissionsUserConnection
+}
+
+"Социальная роль."
+type SocialRole {
+  Description: String
+  Icon: UploadFile
+  Name: String!
+  applications(limit: Int, sort: String, start: Int, where: JSON): [Application]
+  created_at: DateTime!
+  id: ID!
+  updated_at: DateTime!
+}
+
+type SocialRoleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type SocialRoleConnection {
+  aggregate: SocialRoleAggregator
+  groupBy: SocialRoleGroupBy
+  values: [SocialRole]
+}
+
+type SocialRoleConnectionCreated_at {
+  connection: SocialRoleConnection
+  key: DateTime
+}
+
+type SocialRoleConnectionDescription {
+  connection: SocialRoleConnection
+  key: String
+}
+
+type SocialRoleConnectionIcon {
+  connection: SocialRoleConnection
+  key: ID
+}
+
+type SocialRoleConnectionId {
+  connection: SocialRoleConnection
+  key: ID
+}
+
+type SocialRoleConnectionName {
+  connection: SocialRoleConnection
+  key: String
+}
+
+type SocialRoleConnectionUpdated_at {
+  connection: SocialRoleConnection
+  key: DateTime
+}
+
+type SocialRoleGroupBy {
+  Description: [SocialRoleConnectionDescription]
+  Icon: [SocialRoleConnectionIcon]
+  Name: [SocialRoleConnectionName]
+  created_at: [SocialRoleConnectionCreated_at]
+  id: [SocialRoleConnectionId]
+  updated_at: [SocialRoleConnectionUpdated_at]
+}
+
+type UploadFile {
+  alternativeText: String
+  caption: String
+  created_at: DateTime!
+  ext: String
+  formats: JSON
+  hash: String!
+  height: Int
+  id: ID!
+  mime: String!
+  name: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related(limit: Int, sort: String, start: Int, where: JSON): [Morph]
+  size: Float!
+  updated_at: DateTime!
+  url: String!
+  width: Int
+}
+
+type UploadFileAggregator {
+  avg: UploadFileAggregatorAvg
+  count: Int
+  max: UploadFileAggregatorMax
+  min: UploadFileAggregatorMin
+  sum: UploadFileAggregatorSum
+  totalCount: Int
+}
+
+type UploadFileAggregatorAvg {
+  height: Float
+  size: Float
+  width: Float
+}
+
+type UploadFileAggregatorMax {
+  height: Float
+  size: Float
+  width: Float
+}
+
+type UploadFileAggregatorMin {
+  height: Float
+  size: Float
+  width: Float
+}
+
+type UploadFileAggregatorSum {
+  height: Float
+  size: Float
+  width: Float
+}
+
+type UploadFileConnection {
+  aggregate: UploadFileAggregator
+  groupBy: UploadFileGroupBy
+  values: [UploadFile]
+}
+
+type UploadFileConnectionAlternativeText {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionCaption {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionCreated_at {
+  connection: UploadFileConnection
+  key: DateTime
+}
+
+type UploadFileConnectionExt {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionFormats {
+  connection: UploadFileConnection
+  key: JSON
+}
+
+type UploadFileConnectionHash {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionHeight {
+  connection: UploadFileConnection
+  key: Int
+}
+
+type UploadFileConnectionId {
+  connection: UploadFileConnection
+  key: ID
+}
+
+type UploadFileConnectionMime {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionName {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionPreviewUrl {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionProvider {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionProvider_metadata {
+  connection: UploadFileConnection
+  key: JSON
+}
+
+type UploadFileConnectionSize {
+  connection: UploadFileConnection
+  key: Float
+}
+
+type UploadFileConnectionUpdated_at {
+  connection: UploadFileConnection
+  key: DateTime
+}
+
+type UploadFileConnectionUrl {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionWidth {
+  connection: UploadFileConnection
+  key: Int
+}
+
+type UploadFileGroupBy {
+  alternativeText: [UploadFileConnectionAlternativeText]
+  caption: [UploadFileConnectionCaption]
+  created_at: [UploadFileConnectionCreated_at]
+  ext: [UploadFileConnectionExt]
+  formats: [UploadFileConnectionFormats]
+  hash: [UploadFileConnectionHash]
+  height: [UploadFileConnectionHeight]
+  id: [UploadFileConnectionId]
+  mime: [UploadFileConnectionMime]
+  name: [UploadFileConnectionName]
+  previewUrl: [UploadFileConnectionPreviewUrl]
+  provider: [UploadFileConnectionProvider]
+  provider_metadata: [UploadFileConnectionProvider_metadata]
+  size: [UploadFileConnectionSize]
+  updated_at: [UploadFileConnectionUpdated_at]
+  url: [UploadFileConnectionUrl]
+  width: [UploadFileConnectionWidth]
+}
+
+type UserPermissionsPasswordPayload {
+  ok: Boolean!
+}
+
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
+}
+
+type UsersPermissionsMe {
+  blocked: Boolean
+  confirmed: Boolean
+  email: String!
+  id: ID!
+  role: UsersPermissionsMeRole
+  username: String!
+}
+
+type UsersPermissionsMeRole {
+  description: String
+  id: ID!
+  name: String!
+  type: String
+}
+
+type UsersPermissionsPermission {
+  action: String!
+  controller: String!
+  enabled: Boolean!
+  id: ID!
+  policy: String
+  role: UsersPermissionsRole
+  type: String!
+}
+
+type UsersPermissionsRole {
+  description: String
+  id: ID!
+  name: String!
+  permissions(limit: Int, sort: String, start: Int, where: JSON): [UsersPermissionsPermission]
+  type: String
+  users(limit: Int, sort: String, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsRoleConnection {
+  aggregate: UsersPermissionsRoleAggregator
+  groupBy: UsersPermissionsRoleGroupBy
+  values: [UsersPermissionsRole]
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  connection: UsersPermissionsRoleConnection
+  key: String
+}
+
+type UsersPermissionsRoleConnectionId {
+  connection: UsersPermissionsRoleConnection
+  key: ID
+}
+
+type UsersPermissionsRoleConnectionName {
+  connection: UsersPermissionsRoleConnection
+  key: String
+}
+
+type UsersPermissionsRoleConnectionType {
+  connection: UsersPermissionsRoleConnection
+  key: String
+}
+
+type UsersPermissionsRoleGroupBy {
+  description: [UsersPermissionsRoleConnectionDescription]
+  id: [UsersPermissionsRoleConnectionId]
+  name: [UsersPermissionsRoleConnectionName]
+  type: [UsersPermissionsRoleConnectionType]
+}
+
+type UsersPermissionsUser {
+  blocked: Boolean
+  confirmed: Boolean
+  created_at: DateTime!
+  email: String!
+  id: ID!
+  provider: String
+  role: UsersPermissionsRole
+  updated_at: DateTime!
+  username: String!
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsUserConnection {
+  aggregate: UsersPermissionsUserAggregator
+  groupBy: UsersPermissionsUserGroupBy
+  values: [UsersPermissionsUser]
+}
+
+type UsersPermissionsUserConnectionBlocked {
+  connection: UsersPermissionsUserConnection
+  key: Boolean
+}
+
+type UsersPermissionsUserConnectionConfirmed {
+  connection: UsersPermissionsUserConnection
+  key: Boolean
+}
+
+type UsersPermissionsUserConnectionCreated_at {
+  connection: UsersPermissionsUserConnection
+  key: DateTime
+}
+
+type UsersPermissionsUserConnectionEmail {
+  connection: UsersPermissionsUserConnection
+  key: String
+}
+
+type UsersPermissionsUserConnectionId {
+  connection: UsersPermissionsUserConnection
+  key: ID
+}
+
+type UsersPermissionsUserConnectionProvider {
+  connection: UsersPermissionsUserConnection
+  key: String
+}
+
+type UsersPermissionsUserConnectionRole {
+  connection: UsersPermissionsUserConnection
+  key: ID
+}
+
+type UsersPermissionsUserConnectionUpdated_at {
+  connection: UsersPermissionsUserConnection
+  key: DateTime
+}
+
+type UsersPermissionsUserConnectionUsername {
+  connection: UsersPermissionsUserConnection
+  key: String
+}
+
+type UsersPermissionsUserGroupBy {
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  created_at: [UsersPermissionsUserConnectionCreated_at]
+  email: [UsersPermissionsUserConnectionEmail]
+  id: [UsersPermissionsUserConnectionId]
+  provider: [UsersPermissionsUserConnectionProvider]
+  role: [UsersPermissionsUserConnectionRole]
+  updated_at: [UsersPermissionsUserConnectionUpdated_at]
+  username: [UsersPermissionsUserConnectionUsername]
+}
+
+type createApplicationPayload {
+  application: Application
+}
+
+type createNewsArticlePayload {
+  newsArticle: NewsArticle
+}
+
+type createPrimaryBannerPayload {
+  primaryBanner: PrimaryBanner
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+type createSocialRolePayload {
+  socialRole: SocialRole
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+type deleteApplicationPayload {
+  application: Application
+}
+
+type deleteFeaturedBannerPayload {
+  featuredBanner: FeaturedBanner
+}
+
+type deleteFilePayload {
+  file: UploadFile
+}
+
+type deleteNewsArticlePayload {
+  newsArticle: NewsArticle
+}
+
+type deletePrimaryBannerPayload {
+  primaryBanner: PrimaryBanner
+}
+
+type deletePrimaryCardPayload {
+  primaryCard: PrimaryCard
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+type deleteSocialRolePayload {
+  socialRole: SocialRole
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+type updateApplicationPayload {
+  application: Application
+}
+
+type updateFeaturedBannerPayload {
+  featuredBanner: FeaturedBanner
+}
+
+type updateNewsArticlePayload {
+  newsArticle: NewsArticle
+}
+
+type updatePrimaryBannerPayload {
+  primaryBanner: PrimaryBanner
+}
+
+type updatePrimaryCardPayload {
+  primaryCard: PrimaryCard
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+type updateSocialRolePayload {
+  socialRole: SocialRole
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+enum ENUM_APPLICATION_CATEGORY {
+  editors_choise
+  new
+  popular
+}
+
+enum ENUM_PRIMARYBANNER_PRIORITY {
+  priority_1
+  priority_2
+  priority_3
+  priority_4
+  priority_5
+}
+
+enum PublicationState {
+  LIVE
+  PREVIEW
+}
+
+input ApplicationInput {
+  ApplicationLinks: [ApplicationApplicationLinksDynamicZoneInput!]
+  ApplicationProperties: [ComponentApplicationApplicationPropertyInput]
+  Category: ENUM_APPLICATION_CATEGORY
+  Contacts: [ApplicationContactsDynamicZoneInput!]
+  Cover: ID
+  Logo: ID
+  Name: String!
+  PrimaryBanners: [ID]
+  ShortDescription: String!
+  created_by: ID
+  published_at: DateTime
+  social_roles: [ID]
+  updated_by: ID
+}
+
+input ComponentApplicationApplicationPropertyInput {
+  Link: String
+  Title: String!
+  Value: String!
+}
+
+input ComponentApplicationLinkAppStoreLinkInput {
+  Link: String!
+}
+
+input ComponentApplicationLinkChatBotLinkInput {
+  Link: String!
+}
+
+input ComponentApplicationLinkGooglePlayLinkInput {
+  Link: String!
+}
+
+input ComponentApplicationLinkHomepageLinkInput {
+  Link: String!
+}
+
+input ComponentApplicationLinkVkMiniAppLinkInput {
+  Link: String!
+}
+
+input ComponentCardsPrimaryCardInput {
+  Description: String
+  Image: ID
+  Link: String
+  Title: String!
+}
+
+input ComponentContactsContactEmailInput {
+  Email: String!
+  Title: String
+}
+
+input ComponentContactsContactPhoneInput {
+  Phone: String!
+  Title: String
+}
+
+input FeaturedBannerInput {
+  created_by: ID
+  primary_banner: ID
+  updated_by: ID
+}
+
+input FileInfoInput {
+  alternativeText: String
+  caption: String
+  name: String
+}
+
+input FileInput {
+  alternativeText: String
+  caption: String
+  created_by: ID
+  ext: String
+  formats: JSON
+  hash: String!
+  height: Int
+  mime: String!
+  name: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+  size: Float!
+  updated_by: ID
+  url: String!
+  width: Int
+}
+
+input InputID {
+  id: ID!
+}
+
+input NewsArticleInput {
+  Body: String!
+  Cover: ID
+  ShortDescription: String!
+  Title: String!
+  created_by: ID
+  published_at: DateTime
+  updated_by: ID
+}
+
+input PrimaryBannerInput {
+  Application: ID
+  Description: String
+  Image: ID
+  Link: String!
+  Priority: ENUM_PRIMARYBANNER_PRIORITY!
+  Title: String!
+  created_by: ID
+  updated_by: ID
+}
+
+input PrimaryCardInput {
+  Cards: [PrimaryCardCardsDynamicZoneInput!]!
+  created_by: ID
+  updated_by: ID
+}
+
+input RoleInput {
+  created_by: ID
+  description: String
+  name: String!
+  permissions: [ID]
+  type: String
+  updated_by: ID
+  users: [ID]
+}
+
+input SocialRoleInput {
+  Description: String
+  Icon: ID
+  Name: String!
+  applications: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input UserInput {
+  blocked: Boolean
+  confirmationToken: String
+  confirmed: Boolean
+  created_by: ID
+  email: String!
+  password: String
+  provider: String
+  resetPasswordToken: String
+  role: ID
+  updated_by: ID
+  username: String!
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String = "local"
+}
+
+input UsersPermissionsRegisterInput {
+  email: String!
+  password: String!
+  username: String!
+}
+
+input createApplicationInput {
+  data: ApplicationInput
+}
+
+input createNewsArticleInput {
+  data: NewsArticleInput
+}
+
+input createPrimaryBannerInput {
+  data: PrimaryBannerInput
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+input createSocialRoleInput {
+  data: SocialRoleInput
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+input deleteApplicationInput {
+  where: InputID
+}
+
+input deleteFileInput {
+  where: InputID
+}
+
+input deleteNewsArticleInput {
+  where: InputID
+}
+
+input deletePrimaryBannerInput {
+  where: InputID
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+input deleteSocialRoleInput {
+  where: InputID
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+input editApplicationInput {
+  ApplicationLinks: [ApplicationApplicationLinksDynamicZoneInput!]
+  ApplicationProperties: [editComponentApplicationApplicationPropertyInput]
+  Category: ENUM_APPLICATION_CATEGORY
+  Contacts: [ApplicationContactsDynamicZoneInput!]
+  Cover: ID
+  Logo: ID
+  Name: String
+  PrimaryBanners: [ID]
+  ShortDescription: String
+  created_by: ID
+  published_at: DateTime
+  social_roles: [ID]
+  updated_by: ID
+}
+
+input editComponentApplicationApplicationPropertyInput {
+  Link: String
+  Title: String
+  Value: String
+  id: ID
+}
+
+input editComponentApplicationLinkAppStoreLinkInput {
+  Link: String
+  id: ID
+}
+
+input editComponentApplicationLinkChatBotLinkInput {
+  Link: String
+  id: ID
+}
+
+input editComponentApplicationLinkGooglePlayLinkInput {
+  Link: String
+  id: ID
+}
+
+input editComponentApplicationLinkHomepageLinkInput {
+  Link: String
+  id: ID
+}
+
+input editComponentApplicationLinkVkMiniAppLinkInput {
+  Link: String
+  id: ID
+}
+
+input editComponentCardsPrimaryCardInput {
+  Description: String
+  Image: ID
+  Link: String
+  Title: String
+  id: ID
+}
+
+input editComponentContactsContactEmailInput {
+  Email: String
+  Title: String
+  id: ID
+}
+
+input editComponentContactsContactPhoneInput {
+  Phone: String
+  Title: String
+  id: ID
+}
+
+input editFeaturedBannerInput {
+  created_by: ID
+  primary_banner: ID
+  updated_by: ID
+}
+
+input editFileInput {
+  alternativeText: String
+  caption: String
+  created_by: ID
+  ext: String
+  formats: JSON
+  hash: String
+  height: Int
+  mime: String
+  name: String
+  previewUrl: String
+  provider: String
+  provider_metadata: JSON
+  related: [ID]
+  size: Float
+  updated_by: ID
+  url: String
+  width: Int
+}
+
+input editNewsArticleInput {
+  Body: String
+  Cover: ID
+  ShortDescription: String
+  Title: String
+  created_by: ID
+  published_at: DateTime
+  updated_by: ID
+}
+
+input editPrimaryBannerInput {
+  Application: ID
+  Description: String
+  Image: ID
+  Link: String
+  Priority: ENUM_PRIMARYBANNER_PRIORITY
+  Title: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editPrimaryCardInput {
+  Cards: [PrimaryCardCardsDynamicZoneInput!]!
+  created_by: ID
+  updated_by: ID
+}
+
+input editRoleInput {
+  created_by: ID
+  description: String
+  name: String
+  permissions: [ID]
+  type: String
+  updated_by: ID
+  users: [ID]
+}
+
+input editSocialRoleInput {
+  Description: String
+  Icon: ID
+  Name: String
+  applications: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editUserInput {
+  blocked: Boolean
+  confirmationToken: String
+  confirmed: Boolean
+  created_by: ID
+  email: String
+  password: String
+  provider: String
+  resetPasswordToken: String
+  role: ID
+  updated_by: ID
+  username: String
+}
+
+input updateApplicationInput {
+  data: editApplicationInput
+  where: InputID
+}
+
+input updateFeaturedBannerInput {
+  data: editFeaturedBannerInput
+}
+
+input updateNewsArticleInput {
+  data: editNewsArticleInput
+  where: InputID
+}
+
+input updatePrimaryBannerInput {
+  data: editPrimaryBannerInput
+  where: InputID
+}
+
+input updatePrimaryCardInput {
+  data: editPrimaryCardInput
+}
+
+input updateRoleInput {
+  data: editRoleInput
+  where: InputID
+}
+
+input updateSocialRoleInput {
+  data: editSocialRoleInput
+  where: InputID
+}
+
+input updateUserInput {
+  data: editUserInput
+  where: InputID
+}
+
+"Input type for dynamic zone Contacts of Application"
+scalar ApplicationContactsDynamicZoneInput
+
+"Input type for dynamic zone ApplicationLinks of Application"
+scalar ApplicationApplicationLinksDynamicZoneInput
+
+"Input type for dynamic zone Cards of PrimaryCard"
+scalar PrimaryCardCardsDynamicZoneInput
+
+"The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."
+scalar JSON
+
+"A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+scalar DateTime
+
+"A time string with format: HH:mm:ss.SSS"
+scalar Time
+
+"A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+scalar Date
+
+"The `Long` scalar type represents 52-bit integers"
+scalar Long
+
+"The `Upload` scalar type represents a file upload."
+scalar Upload

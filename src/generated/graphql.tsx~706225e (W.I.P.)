@@ -1,0 +1,2122 @@
+import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
+export type Maybe<T> = T | null;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions =  {}
+/** All built-in and custom scalars, mapped to their actual values */
+export type Scalars = {
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
+  /** Input type for dynamic zone ApplicationLinks of Application */
+  ApplicationApplicationLinksDynamicZoneInput: any;
+  /** Input type for dynamic zone Contacts of Application */
+  ApplicationContactsDynamicZoneInput: any;
+  /** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
+  Date: any;
+  /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
+  DateTime: any;
+  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
+  JSON: any;
+  /** The `Long` scalar type represents 52-bit integers */
+  Long: any;
+  /** Input type for dynamic zone Cards of PrimaryCard */
+  PrimaryCardCardsDynamicZoneInput: any;
+  /** A time string with format: HH:mm:ss.SSS */
+  Time: any;
+  /** The `Upload` scalar type represents a file upload. */
+  Upload: any;
+};
+
+export type AdminUser = {
+  __typename?: 'AdminUser';
+  id: Scalars['ID'];
+  username?: Maybe<Scalars['String']>;
+  firstname: Scalars['String'];
+  lastname: Scalars['String'];
+};
+
+/** Приложение. */
+export type Application = {
+  __typename?: 'Application';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  Name: Scalars['String'];
+  Logo?: Maybe<UploadFile>;
+  ShortDescription: Scalars['String'];
+  Category?: Maybe<Enum_Application_Category>;
+  Contacts?: Maybe<Array<Maybe<ApplicationContactsDynamicZone>>>;
+  ApplicationProperties?: Maybe<Array<Maybe<ComponentApplicationApplicationProperties>>>;
+  ApplicationLinks?: Maybe<Array<Maybe<ApplicationApplicationLinksDynamicZone>>>;
+  published_at?: Maybe<Scalars['DateTime']>;
+  social_roles?: Maybe<Array<Maybe<SocialRole>>>;
+};
+
+
+/** Приложение. */
+export type ApplicationSocial_RolesArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+export type ApplicationAggregator = {
+  __typename?: 'ApplicationAggregator';
+  count?: Maybe<Scalars['Int']>;
+  totalCount?: Maybe<Scalars['Int']>;
+};
+
+export type ApplicationApplicationLinksDynamicZone = ComponentApplicationLinkGooglePlayLink | ComponentApplicationLinkChatBotLink | ComponentApplicationLinkVkMiniAppLink | ComponentApplicationLinkAppStoreLink | ComponentApplicationLinkHomepageLink;
+
+
+export type ApplicationConnection = {
+  __typename?: 'ApplicationConnection';
+  values?: Maybe<Array<Maybe<Application>>>;
+  groupBy?: Maybe<ApplicationGroupBy>;
+  aggregate?: Maybe<ApplicationAggregator>;
+};
+
+export type ApplicationConnectionCategory = {
+  __typename?: 'ApplicationConnectionCategory';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<ApplicationConnection>;
+};
+
+export type ApplicationConnectionCreated_At = {
+  __typename?: 'ApplicationConnectionCreated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<ApplicationConnection>;
+};
+
+export type ApplicationConnectionId = {
+  __typename?: 'ApplicationConnectionId';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<ApplicationConnection>;
+};
+
+export type ApplicationConnectionLogo = {
+  __typename?: 'ApplicationConnectionLogo';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<ApplicationConnection>;
+};
+
+export type ApplicationConnectionName = {
+  __typename?: 'ApplicationConnectionName';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<ApplicationConnection>;
+};
+
+export type ApplicationConnectionPublished_At = {
+  __typename?: 'ApplicationConnectionPublished_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<ApplicationConnection>;
+};
+
+export type ApplicationConnectionShortDescription = {
+  __typename?: 'ApplicationConnectionShortDescription';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<ApplicationConnection>;
+};
+
+export type ApplicationConnectionUpdated_At = {
+  __typename?: 'ApplicationConnectionUpdated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<ApplicationConnection>;
+};
+
+export type ApplicationContactsDynamicZone = ComponentContactsContactEmail | ComponentContactsContactPhone;
+
+
+export type ApplicationGroupBy = {
+  __typename?: 'ApplicationGroupBy';
+  id?: Maybe<Array<Maybe<ApplicationConnectionId>>>;
+  created_at?: Maybe<Array<Maybe<ApplicationConnectionCreated_At>>>;
+  updated_at?: Maybe<Array<Maybe<ApplicationConnectionUpdated_At>>>;
+  Name?: Maybe<Array<Maybe<ApplicationConnectionName>>>;
+  Logo?: Maybe<Array<Maybe<ApplicationConnectionLogo>>>;
+  ShortDescription?: Maybe<Array<Maybe<ApplicationConnectionShortDescription>>>;
+  Category?: Maybe<Array<Maybe<ApplicationConnectionCategory>>>;
+  published_at?: Maybe<Array<Maybe<ApplicationConnectionPublished_At>>>;
+};
+
+export type ApplicationInput = {
+  Name: Scalars['String'];
+  Logo?: Maybe<Scalars['ID']>;
+  ShortDescription: Scalars['String'];
+  Category?: Maybe<Enum_Application_Category>;
+  Contacts?: Maybe<Array<Scalars['ApplicationContactsDynamicZoneInput']>>;
+  social_roles?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  ApplicationProperties?: Maybe<Array<Maybe<ComponentApplicationApplicationPropertyInput>>>;
+  ApplicationLinks?: Maybe<Array<Scalars['ApplicationApplicationLinksDynamicZoneInput']>>;
+  published_at?: Maybe<Scalars['DateTime']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type ComponentApplicationApplicationProperties = {
+  __typename?: 'ComponentApplicationApplicationProperties';
+  id: Scalars['ID'];
+  Title: Scalars['String'];
+  Value: Scalars['String'];
+  Link?: Maybe<Scalars['String']>;
+};
+
+export type ComponentApplicationApplicationPropertyInput = {
+  Title: Scalars['String'];
+  Value: Scalars['String'];
+  Link?: Maybe<Scalars['String']>;
+};
+
+export type ComponentApplicationLinkAppStoreLink = {
+  __typename?: 'ComponentApplicationLinkAppStoreLink';
+  id: Scalars['ID'];
+  Link: Scalars['String'];
+};
+
+export type ComponentApplicationLinkAppStoreLinkInput = {
+  Link: Scalars['String'];
+};
+
+export type ComponentApplicationLinkChatBotLink = {
+  __typename?: 'ComponentApplicationLinkChatBotLink';
+  id: Scalars['ID'];
+  Link: Scalars['String'];
+};
+
+export type ComponentApplicationLinkChatBotLinkInput = {
+  Link: Scalars['String'];
+};
+
+export type ComponentApplicationLinkGooglePlayLink = {
+  __typename?: 'ComponentApplicationLinkGooglePlayLink';
+  id: Scalars['ID'];
+  Link: Scalars['String'];
+};
+
+export type ComponentApplicationLinkGooglePlayLinkInput = {
+  Link: Scalars['String'];
+};
+
+export type ComponentApplicationLinkHomepageLink = {
+  __typename?: 'ComponentApplicationLinkHomepageLink';
+  id: Scalars['ID'];
+  Link: Scalars['String'];
+};
+
+export type ComponentApplicationLinkHomepageLinkInput = {
+  Link: Scalars['String'];
+};
+
+export type ComponentApplicationLinkVkMiniAppLink = {
+  __typename?: 'ComponentApplicationLinkVkMiniAppLink';
+  id: Scalars['ID'];
+  Link: Scalars['String'];
+};
+
+export type ComponentApplicationLinkVkMiniAppLinkInput = {
+  Link: Scalars['String'];
+};
+
+export type ComponentCardsPrimaryCard = {
+  __typename?: 'ComponentCardsPrimaryCard';
+  id: Scalars['ID'];
+  Title: Scalars['String'];
+  Image?: Maybe<UploadFile>;
+  Description?: Maybe<Scalars['String']>;
+  Link?: Maybe<Scalars['String']>;
+};
+
+export type ComponentCardsPrimaryCardInput = {
+  Title: Scalars['String'];
+  Image?: Maybe<Scalars['ID']>;
+  Description?: Maybe<Scalars['String']>;
+  Link?: Maybe<Scalars['String']>;
+};
+
+export type ComponentContactsContactEmail = {
+  __typename?: 'ComponentContactsContactEmail';
+  id: Scalars['ID'];
+  Title?: Maybe<Scalars['String']>;
+  Email: Scalars['String'];
+};
+
+export type ComponentContactsContactEmailInput = {
+  Title?: Maybe<Scalars['String']>;
+  Email: Scalars['String'];
+};
+
+export type ComponentContactsContactPhone = {
+  __typename?: 'ComponentContactsContactPhone';
+  id: Scalars['ID'];
+  Title?: Maybe<Scalars['String']>;
+  Phone: Scalars['String'];
+};
+
+export type ComponentContactsContactPhoneInput = {
+  Title?: Maybe<Scalars['String']>;
+  Phone: Scalars['String'];
+};
+
+
+
+export enum Enum_Application_Category {
+  New = 'new',
+  EditorsChoise = 'editors_choise',
+  Popular = 'popular'
+}
+
+export enum Enum_Primarybanner_Priority {
+  Priority_1 = 'priority_1',
+  Priority_2 = 'priority_2',
+  Priority_3 = 'priority_3',
+  Priority_4 = 'priority_4',
+  Priority_5 = 'priority_5'
+}
+
+export type FileInfoInput = {
+  name?: Maybe<Scalars['String']>;
+  alternativeText?: Maybe<Scalars['String']>;
+  caption?: Maybe<Scalars['String']>;
+};
+
+export type FileInput = {
+  name: Scalars['String'];
+  alternativeText?: Maybe<Scalars['String']>;
+  caption?: Maybe<Scalars['String']>;
+  width?: Maybe<Scalars['Int']>;
+  height?: Maybe<Scalars['Int']>;
+  formats?: Maybe<Scalars['JSON']>;
+  hash: Scalars['String'];
+  ext?: Maybe<Scalars['String']>;
+  mime: Scalars['String'];
+  size: Scalars['Float'];
+  url: Scalars['String'];
+  previewUrl?: Maybe<Scalars['String']>;
+  provider: Scalars['String'];
+  provider_metadata?: Maybe<Scalars['JSON']>;
+  related?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type InputId = {
+  id: Scalars['ID'];
+};
+
+
+
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Application | ApplicationConnection | ApplicationAggregator | ApplicationGroupBy | ApplicationConnectionId | ApplicationConnectionCreated_At | ApplicationConnectionUpdated_At | ApplicationConnectionName | ApplicationConnectionLogo | ApplicationConnectionShortDescription | ApplicationConnectionCategory | ApplicationConnectionPublished_At | CreateApplicationPayload | UpdateApplicationPayload | DeleteApplicationPayload | NewsArticle | NewsArticleConnection | NewsArticleAggregator | NewsArticleGroupBy | NewsArticleConnectionId | NewsArticleConnectionCreated_At | NewsArticleConnectionUpdated_At | NewsArticleConnectionTitle | NewsArticleConnectionBody | NewsArticleConnectionCover | NewsArticleConnectionShortDescription | NewsArticleConnectionPublished_At | CreateNewsArticlePayload | UpdateNewsArticlePayload | DeleteNewsArticlePayload | PrimaryBanner | PrimaryBannerConnection | PrimaryBannerAggregator | PrimaryBannerGroupBy | PrimaryBannerConnectionId | PrimaryBannerConnectionCreated_At | PrimaryBannerConnectionUpdated_At | PrimaryBannerConnectionTitle | PrimaryBannerConnectionDescription | PrimaryBannerConnectionLink | PrimaryBannerConnectionImage | PrimaryBannerConnectionPriority | CreatePrimaryBannerPayload | UpdatePrimaryBannerPayload | DeletePrimaryBannerPayload | PrimaryCard | UpdatePrimaryCardPayload | DeletePrimaryCardPayload | SocialRole | SocialRoleConnection | SocialRoleAggregator | SocialRoleGroupBy | SocialRoleConnectionId | SocialRoleConnectionCreated_At | SocialRoleConnectionUpdated_At | SocialRoleConnectionName | SocialRoleConnectionIcon | SocialRoleConnectionDescription | CreateSocialRolePayload | UpdateSocialRolePayload | DeleteSocialRolePayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentApplicationLinkAppStoreLink | ComponentApplicationLinkChatBotLink | ComponentApplicationLinkGooglePlayLink | ComponentApplicationLinkHomepageLink | ComponentApplicationLinkVkMiniAppLink | ComponentApplicationApplicationProperties | ComponentCardsPrimaryCard | ComponentContactsContactEmail | ComponentContactsContactPhone;
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  createApplication?: Maybe<CreateApplicationPayload>;
+  updateApplication?: Maybe<UpdateApplicationPayload>;
+  deleteApplication?: Maybe<DeleteApplicationPayload>;
+  createNewsArticle?: Maybe<CreateNewsArticlePayload>;
+  updateNewsArticle?: Maybe<UpdateNewsArticlePayload>;
+  deleteNewsArticle?: Maybe<DeleteNewsArticlePayload>;
+  createPrimaryBanner?: Maybe<CreatePrimaryBannerPayload>;
+  updatePrimaryBanner?: Maybe<UpdatePrimaryBannerPayload>;
+  deletePrimaryBanner?: Maybe<DeletePrimaryBannerPayload>;
+  updatePrimaryCard?: Maybe<UpdatePrimaryCardPayload>;
+  deletePrimaryCard?: Maybe<DeletePrimaryCardPayload>;
+  createSocialRole?: Maybe<CreateSocialRolePayload>;
+  updateSocialRole?: Maybe<UpdateSocialRolePayload>;
+  deleteSocialRole?: Maybe<DeleteSocialRolePayload>;
+  /** Delete one file */
+  deleteFile?: Maybe<DeleteFilePayload>;
+  /** Create a new role */
+  createRole?: Maybe<CreateRolePayload>;
+  /** Update an existing role */
+  updateRole?: Maybe<UpdateRolePayload>;
+  /** Delete an existing role */
+  deleteRole?: Maybe<DeleteRolePayload>;
+  /** Create a new user */
+  createUser?: Maybe<CreateUserPayload>;
+  /** Update an existing user */
+  updateUser?: Maybe<UpdateUserPayload>;
+  /** Delete an existing user */
+  deleteUser?: Maybe<DeleteUserPayload>;
+  upload: UploadFile;
+  multipleUpload: Array<Maybe<UploadFile>>;
+  updateFileInfo: UploadFile;
+  login: UsersPermissionsLoginPayload;
+  register: UsersPermissionsLoginPayload;
+  forgotPassword?: Maybe<UserPermissionsPasswordPayload>;
+  resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  emailConfirmation?: Maybe<UsersPermissionsLoginPayload>;
+};
+
+
+export type MutationCreateApplicationArgs = {
+  input?: Maybe<CreateApplicationInput>;
+};
+
+
+export type MutationUpdateApplicationArgs = {
+  input?: Maybe<UpdateApplicationInput>;
+};
+
+
+export type MutationDeleteApplicationArgs = {
+  input?: Maybe<DeleteApplicationInput>;
+};
+
+
+export type MutationCreateNewsArticleArgs = {
+  input?: Maybe<CreateNewsArticleInput>;
+};
+
+
+export type MutationUpdateNewsArticleArgs = {
+  input?: Maybe<UpdateNewsArticleInput>;
+};
+
+
+export type MutationDeleteNewsArticleArgs = {
+  input?: Maybe<DeleteNewsArticleInput>;
+};
+
+
+export type MutationCreatePrimaryBannerArgs = {
+  input?: Maybe<CreatePrimaryBannerInput>;
+};
+
+
+export type MutationUpdatePrimaryBannerArgs = {
+  input?: Maybe<UpdatePrimaryBannerInput>;
+};
+
+
+export type MutationDeletePrimaryBannerArgs = {
+  input?: Maybe<DeletePrimaryBannerInput>;
+};
+
+
+export type MutationUpdatePrimaryCardArgs = {
+  input?: Maybe<UpdatePrimaryCardInput>;
+};
+
+
+export type MutationCreateSocialRoleArgs = {
+  input?: Maybe<CreateSocialRoleInput>;
+};
+
+
+export type MutationUpdateSocialRoleArgs = {
+  input?: Maybe<UpdateSocialRoleInput>;
+};
+
+
+export type MutationDeleteSocialRoleArgs = {
+  input?: Maybe<DeleteSocialRoleInput>;
+};
+
+
+export type MutationDeleteFileArgs = {
+  input?: Maybe<DeleteFileInput>;
+};
+
+
+export type MutationCreateRoleArgs = {
+  input?: Maybe<CreateRoleInput>;
+};
+
+
+export type MutationUpdateRoleArgs = {
+  input?: Maybe<UpdateRoleInput>;
+};
+
+
+export type MutationDeleteRoleArgs = {
+  input?: Maybe<DeleteRoleInput>;
+};
+
+
+export type MutationCreateUserArgs = {
+  input?: Maybe<CreateUserInput>;
+};
+
+
+export type MutationUpdateUserArgs = {
+  input?: Maybe<UpdateUserInput>;
+};
+
+
+export type MutationDeleteUserArgs = {
+  input?: Maybe<DeleteUserInput>;
+};
+
+
+export type MutationUploadArgs = {
+  refId?: Maybe<Scalars['ID']>;
+  ref?: Maybe<Scalars['String']>;
+  field?: Maybe<Scalars['String']>;
+  source?: Maybe<Scalars['String']>;
+  info?: Maybe<FileInfoInput>;
+  file: Scalars['Upload'];
+};
+
+
+export type MutationMultipleUploadArgs = {
+  refId?: Maybe<Scalars['ID']>;
+  ref?: Maybe<Scalars['String']>;
+  field?: Maybe<Scalars['String']>;
+  source?: Maybe<Scalars['String']>;
+  files: Array<Maybe<Scalars['Upload']>>;
+};
+
+
+export type MutationUpdateFileInfoArgs = {
+  id: Scalars['ID'];
+  info: FileInfoInput;
+};
+
+
+export type MutationLoginArgs = {
+  input: UsersPermissionsLoginInput;
+};
+
+
+export type MutationRegisterArgs = {
+  input: UsersPermissionsRegisterInput;
+};
+
+
+export type MutationForgotPasswordArgs = {
+  email: Scalars['String'];
+};
+
+
+export type MutationResetPasswordArgs = {
+  password: Scalars['String'];
+  passwordConfirmation: Scalars['String'];
+  code: Scalars['String'];
+};
+
+
+export type MutationEmailConfirmationArgs = {
+  confirmation: Scalars['String'];
+};
+
+/** Новостная статья. */
+export type NewsArticle = {
+  __typename?: 'NewsArticle';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  Title: Scalars['String'];
+  Body: Scalars['String'];
+  Cover?: Maybe<UploadFile>;
+  ShortDescription: Scalars['String'];
+  published_at?: Maybe<Scalars['DateTime']>;
+};
+
+export type NewsArticleAggregator = {
+  __typename?: 'NewsArticleAggregator';
+  count?: Maybe<Scalars['Int']>;
+  totalCount?: Maybe<Scalars['Int']>;
+};
+
+export type NewsArticleConnection = {
+  __typename?: 'NewsArticleConnection';
+  values?: Maybe<Array<Maybe<NewsArticle>>>;
+  groupBy?: Maybe<NewsArticleGroupBy>;
+  aggregate?: Maybe<NewsArticleAggregator>;
+};
+
+export type NewsArticleConnectionBody = {
+  __typename?: 'NewsArticleConnectionBody';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<NewsArticleConnection>;
+};
+
+export type NewsArticleConnectionCover = {
+  __typename?: 'NewsArticleConnectionCover';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<NewsArticleConnection>;
+};
+
+export type NewsArticleConnectionCreated_At = {
+  __typename?: 'NewsArticleConnectionCreated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<NewsArticleConnection>;
+};
+
+export type NewsArticleConnectionId = {
+  __typename?: 'NewsArticleConnectionId';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<NewsArticleConnection>;
+};
+
+export type NewsArticleConnectionPublished_At = {
+  __typename?: 'NewsArticleConnectionPublished_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<NewsArticleConnection>;
+};
+
+export type NewsArticleConnectionShortDescription = {
+  __typename?: 'NewsArticleConnectionShortDescription';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<NewsArticleConnection>;
+};
+
+export type NewsArticleConnectionTitle = {
+  __typename?: 'NewsArticleConnectionTitle';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<NewsArticleConnection>;
+};
+
+export type NewsArticleConnectionUpdated_At = {
+  __typename?: 'NewsArticleConnectionUpdated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<NewsArticleConnection>;
+};
+
+export type NewsArticleGroupBy = {
+  __typename?: 'NewsArticleGroupBy';
+  id?: Maybe<Array<Maybe<NewsArticleConnectionId>>>;
+  created_at?: Maybe<Array<Maybe<NewsArticleConnectionCreated_At>>>;
+  updated_at?: Maybe<Array<Maybe<NewsArticleConnectionUpdated_At>>>;
+  Title?: Maybe<Array<Maybe<NewsArticleConnectionTitle>>>;
+  Body?: Maybe<Array<Maybe<NewsArticleConnectionBody>>>;
+  Cover?: Maybe<Array<Maybe<NewsArticleConnectionCover>>>;
+  ShortDescription?: Maybe<Array<Maybe<NewsArticleConnectionShortDescription>>>;
+  published_at?: Maybe<Array<Maybe<NewsArticleConnectionPublished_At>>>;
+};
+
+export type NewsArticleInput = {
+  Title: Scalars['String'];
+  Body: Scalars['String'];
+  Cover?: Maybe<Scalars['ID']>;
+  ShortDescription: Scalars['String'];
+  published_at?: Maybe<Scalars['DateTime']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+/** Слайдер из баннеров на главной странице. */
+export type PrimaryBanner = {
+  __typename?: 'PrimaryBanner';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  Title: Scalars['String'];
+  Description?: Maybe<Scalars['String']>;
+  Link: Scalars['String'];
+  Image?: Maybe<UploadFile>;
+  Priority: Enum_Primarybanner_Priority;
+};
+
+export type PrimaryBannerAggregator = {
+  __typename?: 'PrimaryBannerAggregator';
+  count?: Maybe<Scalars['Int']>;
+  totalCount?: Maybe<Scalars['Int']>;
+};
+
+export type PrimaryBannerConnection = {
+  __typename?: 'PrimaryBannerConnection';
+  values?: Maybe<Array<Maybe<PrimaryBanner>>>;
+  groupBy?: Maybe<PrimaryBannerGroupBy>;
+  aggregate?: Maybe<PrimaryBannerAggregator>;
+};
+
+export type PrimaryBannerConnectionCreated_At = {
+  __typename?: 'PrimaryBannerConnectionCreated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<PrimaryBannerConnection>;
+};
+
+export type PrimaryBannerConnectionDescription = {
+  __typename?: 'PrimaryBannerConnectionDescription';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<PrimaryBannerConnection>;
+};
+
+export type PrimaryBannerConnectionId = {
+  __typename?: 'PrimaryBannerConnectionId';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<PrimaryBannerConnection>;
+};
+
+export type PrimaryBannerConnectionImage = {
+  __typename?: 'PrimaryBannerConnectionImage';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<PrimaryBannerConnection>;
+};
+
+export type PrimaryBannerConnectionLink = {
+  __typename?: 'PrimaryBannerConnectionLink';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<PrimaryBannerConnection>;
+};
+
+export type PrimaryBannerConnectionPriority = {
+  __typename?: 'PrimaryBannerConnectionPriority';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<PrimaryBannerConnection>;
+};
+
+export type PrimaryBannerConnectionTitle = {
+  __typename?: 'PrimaryBannerConnectionTitle';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<PrimaryBannerConnection>;
+};
+
+export type PrimaryBannerConnectionUpdated_At = {
+  __typename?: 'PrimaryBannerConnectionUpdated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<PrimaryBannerConnection>;
+};
+
+export type PrimaryBannerGroupBy = {
+  __typename?: 'PrimaryBannerGroupBy';
+  id?: Maybe<Array<Maybe<PrimaryBannerConnectionId>>>;
+  created_at?: Maybe<Array<Maybe<PrimaryBannerConnectionCreated_At>>>;
+  updated_at?: Maybe<Array<Maybe<PrimaryBannerConnectionUpdated_At>>>;
+  Title?: Maybe<Array<Maybe<PrimaryBannerConnectionTitle>>>;
+  Description?: Maybe<Array<Maybe<PrimaryBannerConnectionDescription>>>;
+  Link?: Maybe<Array<Maybe<PrimaryBannerConnectionLink>>>;
+  Image?: Maybe<Array<Maybe<PrimaryBannerConnectionImage>>>;
+  Priority?: Maybe<Array<Maybe<PrimaryBannerConnectionPriority>>>;
+};
+
+export type PrimaryBannerInput = {
+  Title: Scalars['String'];
+  Description?: Maybe<Scalars['String']>;
+  Link: Scalars['String'];
+  Image?: Maybe<Scalars['ID']>;
+  Priority: Enum_Primarybanner_Priority;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type PrimaryCard = {
+  __typename?: 'PrimaryCard';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  Cards: Array<Maybe<PrimaryCardCardsDynamicZone>>;
+};
+
+export type PrimaryCardCardsDynamicZone = ComponentCardsPrimaryCard;
+
+
+export type PrimaryCardInput = {
+  Cards: Array<Scalars['PrimaryCardCardsDynamicZoneInput']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export enum PublicationState {
+  Live = 'LIVE',
+  Preview = 'PREVIEW'
+}
+
+export type Query = {
+  __typename?: 'Query';
+  application?: Maybe<Application>;
+  applications?: Maybe<Array<Maybe<Application>>>;
+  applicationsConnection?: Maybe<ApplicationConnection>;
+  newsArticle?: Maybe<NewsArticle>;
+  newsArticles?: Maybe<Array<Maybe<NewsArticle>>>;
+  newsArticlesConnection?: Maybe<NewsArticleConnection>;
+  primaryBanner?: Maybe<PrimaryBanner>;
+  primaryBanners?: Maybe<Array<Maybe<PrimaryBanner>>>;
+  primaryBannersConnection?: Maybe<PrimaryBannerConnection>;
+  primaryCard?: Maybe<PrimaryCard>;
+  socialRole?: Maybe<SocialRole>;
+  socialRoles?: Maybe<Array<Maybe<SocialRole>>>;
+  socialRolesConnection?: Maybe<SocialRoleConnection>;
+  files?: Maybe<Array<Maybe<UploadFile>>>;
+  filesConnection?: Maybe<UploadFileConnection>;
+  role?: Maybe<UsersPermissionsRole>;
+  /** Retrieve all the existing roles. You can't apply filters on this query. */
+  roles?: Maybe<Array<Maybe<UsersPermissionsRole>>>;
+  rolesConnection?: Maybe<UsersPermissionsRoleConnection>;
+  user?: Maybe<UsersPermissionsUser>;
+  users?: Maybe<Array<Maybe<UsersPermissionsUser>>>;
+  usersConnection?: Maybe<UsersPermissionsUserConnection>;
+  me?: Maybe<UsersPermissionsMe>;
+};
+
+
+export type QueryApplicationArgs = {
+  id: Scalars['ID'];
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryApplicationsArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryApplicationsConnectionArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+
+export type QueryNewsArticleArgs = {
+  id: Scalars['ID'];
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryNewsArticlesArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryNewsArticlesConnectionArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+
+export type QueryPrimaryBannerArgs = {
+  id: Scalars['ID'];
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryPrimaryBannersArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryPrimaryBannersConnectionArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+
+export type QueryPrimaryCardArgs = {
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QuerySocialRoleArgs = {
+  id: Scalars['ID'];
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QuerySocialRolesArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QuerySocialRolesConnectionArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+
+export type QueryFilesArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryFilesConnectionArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+
+export type QueryRoleArgs = {
+  id: Scalars['ID'];
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryRolesArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryRolesConnectionArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+
+export type QueryUserArgs = {
+  id: Scalars['ID'];
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryUsersArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryUsersConnectionArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+export type RoleInput = {
+  name: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  permissions?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  users?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+/** Социальная роль. */
+export type SocialRole = {
+  __typename?: 'SocialRole';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  Name: Scalars['String'];
+  Icon?: Maybe<UploadFile>;
+  Description?: Maybe<Scalars['String']>;
+  applications?: Maybe<Array<Maybe<Application>>>;
+};
+
+
+/** Социальная роль. */
+export type SocialRoleApplicationsArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+export type SocialRoleAggregator = {
+  __typename?: 'SocialRoleAggregator';
+  count?: Maybe<Scalars['Int']>;
+  totalCount?: Maybe<Scalars['Int']>;
+};
+
+export type SocialRoleConnection = {
+  __typename?: 'SocialRoleConnection';
+  values?: Maybe<Array<Maybe<SocialRole>>>;
+  groupBy?: Maybe<SocialRoleGroupBy>;
+  aggregate?: Maybe<SocialRoleAggregator>;
+};
+
+export type SocialRoleConnectionCreated_At = {
+  __typename?: 'SocialRoleConnectionCreated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<SocialRoleConnection>;
+};
+
+export type SocialRoleConnectionDescription = {
+  __typename?: 'SocialRoleConnectionDescription';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<SocialRoleConnection>;
+};
+
+export type SocialRoleConnectionIcon = {
+  __typename?: 'SocialRoleConnectionIcon';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<SocialRoleConnection>;
+};
+
+export type SocialRoleConnectionId = {
+  __typename?: 'SocialRoleConnectionId';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<SocialRoleConnection>;
+};
+
+export type SocialRoleConnectionName = {
+  __typename?: 'SocialRoleConnectionName';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<SocialRoleConnection>;
+};
+
+export type SocialRoleConnectionUpdated_At = {
+  __typename?: 'SocialRoleConnectionUpdated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<SocialRoleConnection>;
+};
+
+export type SocialRoleGroupBy = {
+  __typename?: 'SocialRoleGroupBy';
+  id?: Maybe<Array<Maybe<SocialRoleConnectionId>>>;
+  created_at?: Maybe<Array<Maybe<SocialRoleConnectionCreated_At>>>;
+  updated_at?: Maybe<Array<Maybe<SocialRoleConnectionUpdated_At>>>;
+  Name?: Maybe<Array<Maybe<SocialRoleConnectionName>>>;
+  Icon?: Maybe<Array<Maybe<SocialRoleConnectionIcon>>>;
+  Description?: Maybe<Array<Maybe<SocialRoleConnectionDescription>>>;
+};
+
+export type SocialRoleInput = {
+  Name: Scalars['String'];
+  Icon?: Maybe<Scalars['ID']>;
+  applications?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  Description?: Maybe<Scalars['String']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+
+
+export type UploadFile = {
+  __typename?: 'UploadFile';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  name: Scalars['String'];
+  alternativeText?: Maybe<Scalars['String']>;
+  caption?: Maybe<Scalars['String']>;
+  width?: Maybe<Scalars['Int']>;
+  height?: Maybe<Scalars['Int']>;
+  formats?: Maybe<Scalars['JSON']>;
+  hash: Scalars['String'];
+  ext?: Maybe<Scalars['String']>;
+  mime: Scalars['String'];
+  size: Scalars['Float'];
+  url: Scalars['String'];
+  previewUrl?: Maybe<Scalars['String']>;
+  provider: Scalars['String'];
+  provider_metadata?: Maybe<Scalars['JSON']>;
+  related?: Maybe<Array<Maybe<Morph>>>;
+};
+
+
+export type UploadFileRelatedArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+export type UploadFileAggregator = {
+  __typename?: 'UploadFileAggregator';
+  count?: Maybe<Scalars['Int']>;
+  totalCount?: Maybe<Scalars['Int']>;
+  sum?: Maybe<UploadFileAggregatorSum>;
+  avg?: Maybe<UploadFileAggregatorAvg>;
+  min?: Maybe<UploadFileAggregatorMin>;
+  max?: Maybe<UploadFileAggregatorMax>;
+};
+
+export type UploadFileAggregatorAvg = {
+  __typename?: 'UploadFileAggregatorAvg';
+  width?: Maybe<Scalars['Float']>;
+  height?: Maybe<Scalars['Float']>;
+  size?: Maybe<Scalars['Float']>;
+};
+
+export type UploadFileAggregatorMax = {
+  __typename?: 'UploadFileAggregatorMax';
+  width?: Maybe<Scalars['Float']>;
+  height?: Maybe<Scalars['Float']>;
+  size?: Maybe<Scalars['Float']>;
+};
+
+export type UploadFileAggregatorMin = {
+  __typename?: 'UploadFileAggregatorMin';
+  width?: Maybe<Scalars['Float']>;
+  height?: Maybe<Scalars['Float']>;
+  size?: Maybe<Scalars['Float']>;
+};
+
+export type UploadFileAggregatorSum = {
+  __typename?: 'UploadFileAggregatorSum';
+  width?: Maybe<Scalars['Float']>;
+  height?: Maybe<Scalars['Float']>;
+  size?: Maybe<Scalars['Float']>;
+};
+
+export type UploadFileConnection = {
+  __typename?: 'UploadFileConnection';
+  values?: Maybe<Array<Maybe<UploadFile>>>;
+  groupBy?: Maybe<UploadFileGroupBy>;
+  aggregate?: Maybe<UploadFileAggregator>;
+};
+
+export type UploadFileConnectionAlternativeText = {
+  __typename?: 'UploadFileConnectionAlternativeText';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<UploadFileConnection>;
+};
+
+export type UploadFileConnectionCaption = {
+  __typename?: 'UploadFileConnectionCaption';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<UploadFileConnection>;
+};
+
+export type UploadFileConnectionCreated_At = {
+  __typename?: 'UploadFileConnectionCreated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<UploadFileConnection>;
+};
+
+export type UploadFileConnectionExt = {
+  __typename?: 'UploadFileConnectionExt';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<UploadFileConnection>;
+};
+
+export type UploadFileConnectionFormats = {
+  __typename?: 'UploadFileConnectionFormats';
+  key?: Maybe<Scalars['JSON']>;
+  connection?: Maybe<UploadFileConnection>;
+};
+
+export type UploadFileConnectionHash = {
+  __typename?: 'UploadFileConnectionHash';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<UploadFileConnection>;
+};
+
+export type UploadFileConnectionHeight = {
+  __typename?: 'UploadFileConnectionHeight';
+  key?: Maybe<Scalars['Int']>;
+  connection?: Maybe<UploadFileConnection>;
+};
+
+export type UploadFileConnectionId = {
+  __typename?: 'UploadFileConnectionId';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<UploadFileConnection>;
+};
+
+export type UploadFileConnectionMime = {
+  __typename?: 'UploadFileConnectionMime';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<UploadFileConnection>;
+};
+
+export type UploadFileConnectionName = {
+  __typename?: 'UploadFileConnectionName';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<UploadFileConnection>;
+};
+
+export type UploadFileConnectionPreviewUrl = {
+  __typename?: 'UploadFileConnectionPreviewUrl';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<UploadFileConnection>;
+};
+
+export type UploadFileConnectionProvider = {
+  __typename?: 'UploadFileConnectionProvider';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<UploadFileConnection>;
+};
+
+export type UploadFileConnectionProvider_Metadata = {
+  __typename?: 'UploadFileConnectionProvider_metadata';
+  key?: Maybe<Scalars['JSON']>;
+  connection?: Maybe<UploadFileConnection>;
+};
+
+export type UploadFileConnectionSize = {
+  __typename?: 'UploadFileConnectionSize';
+  key?: Maybe<Scalars['Float']>;
+  connection?: Maybe<UploadFileConnection>;
+};
+
+export type UploadFileConnectionUpdated_At = {
+  __typename?: 'UploadFileConnectionUpdated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<UploadFileConnection>;
+};
+
+export type UploadFileConnectionUrl = {
+  __typename?: 'UploadFileConnectionUrl';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<UploadFileConnection>;
+};
+
+export type UploadFileConnectionWidth = {
+  __typename?: 'UploadFileConnectionWidth';
+  key?: Maybe<Scalars['Int']>;
+  connection?: Maybe<UploadFileConnection>;
+};
+
+export type UploadFileGroupBy = {
+  __typename?: 'UploadFileGroupBy';
+  id?: Maybe<Array<Maybe<UploadFileConnectionId>>>;
+  created_at?: Maybe<Array<Maybe<UploadFileConnectionCreated_At>>>;
+  updated_at?: Maybe<Array<Maybe<UploadFileConnectionUpdated_At>>>;
+  name?: Maybe<Array<Maybe<UploadFileConnectionName>>>;
+  alternativeText?: Maybe<Array<Maybe<UploadFileConnectionAlternativeText>>>;
+  caption?: Maybe<Array<Maybe<UploadFileConnectionCaption>>>;
+  width?: Maybe<Array<Maybe<UploadFileConnectionWidth>>>;
+  height?: Maybe<Array<Maybe<UploadFileConnectionHeight>>>;
+  formats?: Maybe<Array<Maybe<UploadFileConnectionFormats>>>;
+  hash?: Maybe<Array<Maybe<UploadFileConnectionHash>>>;
+  ext?: Maybe<Array<Maybe<UploadFileConnectionExt>>>;
+  mime?: Maybe<Array<Maybe<UploadFileConnectionMime>>>;
+  size?: Maybe<Array<Maybe<UploadFileConnectionSize>>>;
+  url?: Maybe<Array<Maybe<UploadFileConnectionUrl>>>;
+  previewUrl?: Maybe<Array<Maybe<UploadFileConnectionPreviewUrl>>>;
+  provider?: Maybe<Array<Maybe<UploadFileConnectionProvider>>>;
+  provider_metadata?: Maybe<Array<Maybe<UploadFileConnectionProvider_Metadata>>>;
+};
+
+export type UserInput = {
+  username: Scalars['String'];
+  email: Scalars['String'];
+  provider?: Maybe<Scalars['String']>;
+  password?: Maybe<Scalars['String']>;
+  resetPasswordToken?: Maybe<Scalars['String']>;
+  confirmationToken?: Maybe<Scalars['String']>;
+  confirmed?: Maybe<Scalars['Boolean']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  role?: Maybe<Scalars['ID']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type UserPermissionsPasswordPayload = {
+  __typename?: 'UserPermissionsPasswordPayload';
+  ok: Scalars['Boolean'];
+};
+
+export type UsersPermissionsLoginInput = {
+  identifier: Scalars['String'];
+  password: Scalars['String'];
+  provider?: Maybe<Scalars['String']>;
+};
+
+export type UsersPermissionsLoginPayload = {
+  __typename?: 'UsersPermissionsLoginPayload';
+  jwt?: Maybe<Scalars['String']>;
+  user: UsersPermissionsMe;
+};
+
+export type UsersPermissionsMe = {
+  __typename?: 'UsersPermissionsMe';
+  id: Scalars['ID'];
+  username: Scalars['String'];
+  email: Scalars['String'];
+  confirmed?: Maybe<Scalars['Boolean']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  role?: Maybe<UsersPermissionsMeRole>;
+};
+
+export type UsersPermissionsMeRole = {
+  __typename?: 'UsersPermissionsMeRole';
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+};
+
+export type UsersPermissionsPermission = {
+  __typename?: 'UsersPermissionsPermission';
+  id: Scalars['ID'];
+  type: Scalars['String'];
+  controller: Scalars['String'];
+  action: Scalars['String'];
+  enabled: Scalars['Boolean'];
+  policy?: Maybe<Scalars['String']>;
+  role?: Maybe<UsersPermissionsRole>;
+};
+
+export type UsersPermissionsRegisterInput = {
+  username: Scalars['String'];
+  email: Scalars['String'];
+  password: Scalars['String'];
+};
+
+export type UsersPermissionsRole = {
+  __typename?: 'UsersPermissionsRole';
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  permissions?: Maybe<Array<Maybe<UsersPermissionsPermission>>>;
+  users?: Maybe<Array<Maybe<UsersPermissionsUser>>>;
+};
+
+
+export type UsersPermissionsRolePermissionsArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+
+export type UsersPermissionsRoleUsersArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+export type UsersPermissionsRoleAggregator = {
+  __typename?: 'UsersPermissionsRoleAggregator';
+  count?: Maybe<Scalars['Int']>;
+  totalCount?: Maybe<Scalars['Int']>;
+};
+
+export type UsersPermissionsRoleConnection = {
+  __typename?: 'UsersPermissionsRoleConnection';
+  values?: Maybe<Array<Maybe<UsersPermissionsRole>>>;
+  groupBy?: Maybe<UsersPermissionsRoleGroupBy>;
+  aggregate?: Maybe<UsersPermissionsRoleAggregator>;
+};
+
+export type UsersPermissionsRoleConnectionDescription = {
+  __typename?: 'UsersPermissionsRoleConnectionDescription';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<UsersPermissionsRoleConnection>;
+};
+
+export type UsersPermissionsRoleConnectionId = {
+  __typename?: 'UsersPermissionsRoleConnectionId';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<UsersPermissionsRoleConnection>;
+};
+
+export type UsersPermissionsRoleConnectionName = {
+  __typename?: 'UsersPermissionsRoleConnectionName';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<UsersPermissionsRoleConnection>;
+};
+
+export type UsersPermissionsRoleConnectionType = {
+  __typename?: 'UsersPermissionsRoleConnectionType';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<UsersPermissionsRoleConnection>;
+};
+
+export type UsersPermissionsRoleGroupBy = {
+  __typename?: 'UsersPermissionsRoleGroupBy';
+  id?: Maybe<Array<Maybe<UsersPermissionsRoleConnectionId>>>;
+  name?: Maybe<Array<Maybe<UsersPermissionsRoleConnectionName>>>;
+  description?: Maybe<Array<Maybe<UsersPermissionsRoleConnectionDescription>>>;
+  type?: Maybe<Array<Maybe<UsersPermissionsRoleConnectionType>>>;
+};
+
+export type UsersPermissionsUser = {
+  __typename?: 'UsersPermissionsUser';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  username: Scalars['String'];
+  email: Scalars['String'];
+  provider?: Maybe<Scalars['String']>;
+  confirmed?: Maybe<Scalars['Boolean']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  role?: Maybe<UsersPermissionsRole>;
+};
+
+export type UsersPermissionsUserAggregator = {
+  __typename?: 'UsersPermissionsUserAggregator';
+  count?: Maybe<Scalars['Int']>;
+  totalCount?: Maybe<Scalars['Int']>;
+};
+
+export type UsersPermissionsUserConnection = {
+  __typename?: 'UsersPermissionsUserConnection';
+  values?: Maybe<Array<Maybe<UsersPermissionsUser>>>;
+  groupBy?: Maybe<UsersPermissionsUserGroupBy>;
+  aggregate?: Maybe<UsersPermissionsUserAggregator>;
+};
+
+export type UsersPermissionsUserConnectionBlocked = {
+  __typename?: 'UsersPermissionsUserConnectionBlocked';
+  key?: Maybe<Scalars['Boolean']>;
+  connection?: Maybe<UsersPermissionsUserConnection>;
+};
+
+export type UsersPermissionsUserConnectionConfirmed = {
+  __typename?: 'UsersPermissionsUserConnectionConfirmed';
+  key?: Maybe<Scalars['Boolean']>;
+  connection?: Maybe<UsersPermissionsUserConnection>;
+};
+
+export type UsersPermissionsUserConnectionCreated_At = {
+  __typename?: 'UsersPermissionsUserConnectionCreated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<UsersPermissionsUserConnection>;
+};
+
+export type UsersPermissionsUserConnectionEmail = {
+  __typename?: 'UsersPermissionsUserConnectionEmail';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<UsersPermissionsUserConnection>;
+};
+
+export type UsersPermissionsUserConnectionId = {
+  __typename?: 'UsersPermissionsUserConnectionId';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<UsersPermissionsUserConnection>;
+};
+
+export type UsersPermissionsUserConnectionProvider = {
+  __typename?: 'UsersPermissionsUserConnectionProvider';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<UsersPermissionsUserConnection>;
+};
+
+export type UsersPermissionsUserConnectionRole = {
+  __typename?: 'UsersPermissionsUserConnectionRole';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<UsersPermissionsUserConnection>;
+};
+
+export type UsersPermissionsUserConnectionUpdated_At = {
+  __typename?: 'UsersPermissionsUserConnectionUpdated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<UsersPermissionsUserConnection>;
+};
+
+export type UsersPermissionsUserConnectionUsername = {
+  __typename?: 'UsersPermissionsUserConnectionUsername';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<UsersPermissionsUserConnection>;
+};
+
+export type UsersPermissionsUserGroupBy = {
+  __typename?: 'UsersPermissionsUserGroupBy';
+  id?: Maybe<Array<Maybe<UsersPermissionsUserConnectionId>>>;
+  created_at?: Maybe<Array<Maybe<UsersPermissionsUserConnectionCreated_At>>>;
+  updated_at?: Maybe<Array<Maybe<UsersPermissionsUserConnectionUpdated_At>>>;
+  username?: Maybe<Array<Maybe<UsersPermissionsUserConnectionUsername>>>;
+  email?: Maybe<Array<Maybe<UsersPermissionsUserConnectionEmail>>>;
+  provider?: Maybe<Array<Maybe<UsersPermissionsUserConnectionProvider>>>;
+  confirmed?: Maybe<Array<Maybe<UsersPermissionsUserConnectionConfirmed>>>;
+  blocked?: Maybe<Array<Maybe<UsersPermissionsUserConnectionBlocked>>>;
+  role?: Maybe<Array<Maybe<UsersPermissionsUserConnectionRole>>>;
+};
+
+export type CreateApplicationInput = {
+  data?: Maybe<ApplicationInput>;
+};
+
+export type CreateApplicationPayload = {
+  __typename?: 'createApplicationPayload';
+  application?: Maybe<Application>;
+};
+
+export type CreateNewsArticleInput = {
+  data?: Maybe<NewsArticleInput>;
+};
+
+export type CreateNewsArticlePayload = {
+  __typename?: 'createNewsArticlePayload';
+  newsArticle?: Maybe<NewsArticle>;
+};
+
+export type CreatePrimaryBannerInput = {
+  data?: Maybe<PrimaryBannerInput>;
+};
+
+export type CreatePrimaryBannerPayload = {
+  __typename?: 'createPrimaryBannerPayload';
+  primaryBanner?: Maybe<PrimaryBanner>;
+};
+
+export type CreateRoleInput = {
+  data?: Maybe<RoleInput>;
+};
+
+export type CreateRolePayload = {
+  __typename?: 'createRolePayload';
+  role?: Maybe<UsersPermissionsRole>;
+};
+
+export type CreateSocialRoleInput = {
+  data?: Maybe<SocialRoleInput>;
+};
+
+export type CreateSocialRolePayload = {
+  __typename?: 'createSocialRolePayload';
+  socialRole?: Maybe<SocialRole>;
+};
+
+export type CreateUserInput = {
+  data?: Maybe<UserInput>;
+};
+
+export type CreateUserPayload = {
+  __typename?: 'createUserPayload';
+  user?: Maybe<UsersPermissionsUser>;
+};
+
+export type DeleteApplicationInput = {
+  where?: Maybe<InputId>;
+};
+
+export type DeleteApplicationPayload = {
+  __typename?: 'deleteApplicationPayload';
+  application?: Maybe<Application>;
+};
+
+export type DeleteFileInput = {
+  where?: Maybe<InputId>;
+};
+
+export type DeleteFilePayload = {
+  __typename?: 'deleteFilePayload';
+  file?: Maybe<UploadFile>;
+};
+
+export type DeleteNewsArticleInput = {
+  where?: Maybe<InputId>;
+};
+
+export type DeleteNewsArticlePayload = {
+  __typename?: 'deleteNewsArticlePayload';
+  newsArticle?: Maybe<NewsArticle>;
+};
+
+export type DeletePrimaryBannerInput = {
+  where?: Maybe<InputId>;
+};
+
+export type DeletePrimaryBannerPayload = {
+  __typename?: 'deletePrimaryBannerPayload';
+  primaryBanner?: Maybe<PrimaryBanner>;
+};
+
+export type DeletePrimaryCardPayload = {
+  __typename?: 'deletePrimaryCardPayload';
+  primaryCard?: Maybe<PrimaryCard>;
+};
+
+export type DeleteRoleInput = {
+  where?: Maybe<InputId>;
+};
+
+export type DeleteRolePayload = {
+  __typename?: 'deleteRolePayload';
+  role?: Maybe<UsersPermissionsRole>;
+};
+
+export type DeleteSocialRoleInput = {
+  where?: Maybe<InputId>;
+};
+
+export type DeleteSocialRolePayload = {
+  __typename?: 'deleteSocialRolePayload';
+  socialRole?: Maybe<SocialRole>;
+};
+
+export type DeleteUserInput = {
+  where?: Maybe<InputId>;
+};
+
+export type DeleteUserPayload = {
+  __typename?: 'deleteUserPayload';
+  user?: Maybe<UsersPermissionsUser>;
+};
+
+export type EditApplicationInput = {
+  Name?: Maybe<Scalars['String']>;
+  Logo?: Maybe<Scalars['ID']>;
+  ShortDescription?: Maybe<Scalars['String']>;
+  Category?: Maybe<Enum_Application_Category>;
+  Contacts?: Maybe<Array<Scalars['ApplicationContactsDynamicZoneInput']>>;
+  social_roles?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  ApplicationProperties?: Maybe<Array<Maybe<EditComponentApplicationApplicationPropertyInput>>>;
+  ApplicationLinks?: Maybe<Array<Scalars['ApplicationApplicationLinksDynamicZoneInput']>>;
+  published_at?: Maybe<Scalars['DateTime']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type EditComponentApplicationApplicationPropertyInput = {
+  id?: Maybe<Scalars['ID']>;
+  Title?: Maybe<Scalars['String']>;
+  Value?: Maybe<Scalars['String']>;
+  Link?: Maybe<Scalars['String']>;
+};
+
+export type EditComponentApplicationLinkAppStoreLinkInput = {
+  id?: Maybe<Scalars['ID']>;
+  Link?: Maybe<Scalars['String']>;
+};
+
+export type EditComponentApplicationLinkChatBotLinkInput = {
+  id?: Maybe<Scalars['ID']>;
+  Link?: Maybe<Scalars['String']>;
+};
+
+export type EditComponentApplicationLinkGooglePlayLinkInput = {
+  id?: Maybe<Scalars['ID']>;
+  Link?: Maybe<Scalars['String']>;
+};
+
+export type EditComponentApplicationLinkHomepageLinkInput = {
+  id?: Maybe<Scalars['ID']>;
+  Link?: Maybe<Scalars['String']>;
+};
+
+export type EditComponentApplicationLinkVkMiniAppLinkInput = {
+  id?: Maybe<Scalars['ID']>;
+  Link?: Maybe<Scalars['String']>;
+};
+
+export type EditComponentCardsPrimaryCardInput = {
+  id?: Maybe<Scalars['ID']>;
+  Title?: Maybe<Scalars['String']>;
+  Image?: Maybe<Scalars['ID']>;
+  Description?: Maybe<Scalars['String']>;
+  Link?: Maybe<Scalars['String']>;
+};
+
+export type EditComponentContactsContactEmailInput = {
+  id?: Maybe<Scalars['ID']>;
+  Title?: Maybe<Scalars['String']>;
+  Email?: Maybe<Scalars['String']>;
+};
+
+export type EditComponentContactsContactPhoneInput = {
+  id?: Maybe<Scalars['ID']>;
+  Title?: Maybe<Scalars['String']>;
+  Phone?: Maybe<Scalars['String']>;
+};
+
+export type EditFileInput = {
+  name?: Maybe<Scalars['String']>;
+  alternativeText?: Maybe<Scalars['String']>;
+  caption?: Maybe<Scalars['String']>;
+  width?: Maybe<Scalars['Int']>;
+  height?: Maybe<Scalars['Int']>;
+  formats?: Maybe<Scalars['JSON']>;
+  hash?: Maybe<Scalars['String']>;
+  ext?: Maybe<Scalars['String']>;
+  mime?: Maybe<Scalars['String']>;
+  size?: Maybe<Scalars['Float']>;
+  url?: Maybe<Scalars['String']>;
+  previewUrl?: Maybe<Scalars['String']>;
+  provider?: Maybe<Scalars['String']>;
+  provider_metadata?: Maybe<Scalars['JSON']>;
+  related?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type EditNewsArticleInput = {
+  Title?: Maybe<Scalars['String']>;
+  Body?: Maybe<Scalars['String']>;
+  Cover?: Maybe<Scalars['ID']>;
+  ShortDescription?: Maybe<Scalars['String']>;
+  published_at?: Maybe<Scalars['DateTime']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type EditPrimaryBannerInput = {
+  Title?: Maybe<Scalars['String']>;
+  Description?: Maybe<Scalars['String']>;
+  Link?: Maybe<Scalars['String']>;
+  Image?: Maybe<Scalars['ID']>;
+  Priority?: Maybe<Enum_Primarybanner_Priority>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type EditPrimaryCardInput = {
+  Cards: Array<Scalars['PrimaryCardCardsDynamicZoneInput']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type EditRoleInput = {
+  name?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  permissions?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  users?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type EditSocialRoleInput = {
+  Name?: Maybe<Scalars['String']>;
+  Icon?: Maybe<Scalars['ID']>;
+  applications?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  Description?: Maybe<Scalars['String']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type EditUserInput = {
+  username?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  provider?: Maybe<Scalars['String']>;
+  password?: Maybe<Scalars['String']>;
+  resetPasswordToken?: Maybe<Scalars['String']>;
+  confirmationToken?: Maybe<Scalars['String']>;
+  confirmed?: Maybe<Scalars['Boolean']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  role?: Maybe<Scalars['ID']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type UpdateApplicationInput = {
+  where?: Maybe<InputId>;
+  data?: Maybe<EditApplicationInput>;
+};
+
+export type UpdateApplicationPayload = {
+  __typename?: 'updateApplicationPayload';
+  application?: Maybe<Application>;
+};
+
+export type UpdateNewsArticleInput = {
+  where?: Maybe<InputId>;
+  data?: Maybe<EditNewsArticleInput>;
+};
+
+export type UpdateNewsArticlePayload = {
+  __typename?: 'updateNewsArticlePayload';
+  newsArticle?: Maybe<NewsArticle>;
+};
+
+export type UpdatePrimaryBannerInput = {
+  where?: Maybe<InputId>;
+  data?: Maybe<EditPrimaryBannerInput>;
+};
+
+export type UpdatePrimaryBannerPayload = {
+  __typename?: 'updatePrimaryBannerPayload';
+  primaryBanner?: Maybe<PrimaryBanner>;
+};
+
+export type UpdatePrimaryCardInput = {
+  data?: Maybe<EditPrimaryCardInput>;
+};
+
+export type UpdatePrimaryCardPayload = {
+  __typename?: 'updatePrimaryCardPayload';
+  primaryCard?: Maybe<PrimaryCard>;
+};
+
+export type UpdateRoleInput = {
+  where?: Maybe<InputId>;
+  data?: Maybe<EditRoleInput>;
+};
+
+export type UpdateRolePayload = {
+  __typename?: 'updateRolePayload';
+  role?: Maybe<UsersPermissionsRole>;
+};
+
+export type UpdateSocialRoleInput = {
+  where?: Maybe<InputId>;
+  data?: Maybe<EditSocialRoleInput>;
+};
+
+export type UpdateSocialRolePayload = {
+  __typename?: 'updateSocialRolePayload';
+  socialRole?: Maybe<SocialRole>;
+};
+
+export type UpdateUserInput = {
+  where?: Maybe<InputId>;
+  data?: Maybe<EditUserInput>;
+};
+
+export type UpdateUserPayload = {
+  __typename?: 'updateUserPayload';
+  user?: Maybe<UsersPermissionsUser>;
+};
+
+export type GetSocialRolesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetSocialRolesQuery = { __typename?: 'Query', socialRoles?: Maybe<Array<Maybe<{ __typename?: 'SocialRole', id: string, Name: string, Description?: Maybe<string>, Icon?: Maybe<{ __typename?: 'UploadFile', id: string, width?: Maybe<number>, height?: Maybe<number>, url: string }> }>>> };
+
+export type GetApplicationsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetApplicationsQuery = { __typename?: 'Query', applications?: Maybe<Array<Maybe<{ __typename?: 'Application', id: string, Name: string, ShortDescription: string, Category?: Maybe<Enum_Application_Category>, social_roles?: Maybe<Array<Maybe<{ __typename?: 'SocialRole', id: string, Name: string, Description?: Maybe<string>, Icon?: Maybe<{ __typename?: 'UploadFile', id: string, width?: Maybe<number>, height?: Maybe<number>, url: string }> }>>>, Logo?: Maybe<{ __typename?: 'UploadFile', id: string, width?: Maybe<number>, height?: Maybe<number>, url: string }> }>>> };
+
+export type GetApplicationQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type GetApplicationQuery = { __typename?: 'Query', application?: Maybe<{ __typename?: 'Application', id: string, Name: string, ShortDescription: string, Contacts?: Maybe<Array<Maybe<{ __typename: 'ComponentContactsContactEmail', id: string, Title?: Maybe<string>, Email: string } | { __typename: 'ComponentContactsContactPhone', id: string, Title?: Maybe<string>, Phone: string }>>>, Logo?: Maybe<{ __typename?: 'UploadFile', id: string, url: string, width?: Maybe<number>, height?: Maybe<number> }>, ApplicationProperties?: Maybe<Array<Maybe<{ __typename?: 'ComponentApplicationApplicationProperties', id: string, Title: string, Value: string, Link?: Maybe<string> }>>>, ApplicationLinks?: Maybe<Array<Maybe<{ __typename: 'ComponentApplicationLinkGooglePlayLink', id: string, Link: string } | { __typename: 'ComponentApplicationLinkChatBotLink', id: string, Link: string } | { __typename: 'ComponentApplicationLinkVkMiniAppLink', id: string, Link: string } | { __typename: 'ComponentApplicationLinkAppStoreLink', id: string, Link: string } | { __typename: 'ComponentApplicationLinkHomepageLink', id: string, Link: string }>>> }> };
+
+export type GetPrimaryCardsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPrimaryCardsQuery = { __typename?: 'Query', primaryCard?: Maybe<{ __typename?: 'PrimaryCard', Cards: Array<Maybe<{ __typename: 'ComponentCardsPrimaryCard', id: string, Link?: Maybe<string>, Title: string, Description?: Maybe<string>, Image?: Maybe<{ __typename?: 'UploadFile', id: string, width?: Maybe<number>, height?: Maybe<number>, url: string }> }>> }> };
+
+export type GetPrimaryBannersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPrimaryBannersQuery = { __typename?: 'Query', primaryBanners?: Maybe<Array<Maybe<{ __typename?: 'PrimaryBanner', id: string, Title: string, Link: string, Description?: Maybe<string>, Image?: Maybe<{ __typename?: 'UploadFile', url: string, width?: Maybe<number>, height?: Maybe<number> }> }>>> };
+
+export type GetArticleQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type GetArticleQuery = { __typename?: 'Query', newsArticle?: Maybe<{ __typename?: 'NewsArticle', id: string, published_at?: Maybe<any>, Title: string, Body: string, Cover?: Maybe<{ __typename?: 'UploadFile', url: string, width?: Maybe<number>, height?: Maybe<number> }> }> };
+
+
+export const GetSocialRolesDocument = gql`
+    query GetSocialRoles {
+  socialRoles {
+    id
+    Name
+    Description
+    Icon {
+      id
+      width
+      height
+      url
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetSocialRolesQuery__
+ *
+ * To run a query within a React component, call `useGetSocialRolesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSocialRolesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSocialRolesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetSocialRolesQuery(baseOptions?: Apollo.QueryHookOptions<GetSocialRolesQuery, GetSocialRolesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetSocialRolesQuery, GetSocialRolesQueryVariables>(GetSocialRolesDocument, options);
+      }
+export function useGetSocialRolesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSocialRolesQuery, GetSocialRolesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetSocialRolesQuery, GetSocialRolesQueryVariables>(GetSocialRolesDocument, options);
+        }
+export type GetSocialRolesQueryHookResult = ReturnType<typeof useGetSocialRolesQuery>;
+export type GetSocialRolesLazyQueryHookResult = ReturnType<typeof useGetSocialRolesLazyQuery>;
+export type GetSocialRolesQueryResult = Apollo.QueryResult<GetSocialRolesQuery, GetSocialRolesQueryVariables>;
+export const GetApplicationsDocument = gql`
+    query GetApplications {
+  applications {
+    id
+    Name
+    ShortDescription
+    Category
+    social_roles {
+      id
+      Name
+      Description
+      Icon {
+        id
+        width
+        height
+        url
+      }
+    }
+    Logo {
+      id
+      width
+      height
+      url
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetApplicationsQuery__
+ *
+ * To run a query within a React component, call `useGetApplicationsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetApplicationsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetApplicationsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetApplicationsQuery(baseOptions?: Apollo.QueryHookOptions<GetApplicationsQuery, GetApplicationsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetApplicationsQuery, GetApplicationsQueryVariables>(GetApplicationsDocument, options);
+      }
+export function useGetApplicationsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetApplicationsQuery, GetApplicationsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetApplicationsQuery, GetApplicationsQueryVariables>(GetApplicationsDocument, options);
+        }
+export type GetApplicationsQueryHookResult = ReturnType<typeof useGetApplicationsQuery>;
+export type GetApplicationsLazyQueryHookResult = ReturnType<typeof useGetApplicationsLazyQuery>;
+export type GetApplicationsQueryResult = Apollo.QueryResult<GetApplicationsQuery, GetApplicationsQueryVariables>;
+export const GetApplicationDocument = gql`
+    query GetApplication($id: ID!) {
+  application(id: $id) {
+    id
+    Name
+    ShortDescription
+    Contacts {
+      __typename
+      ... on ComponentContactsContactEmail {
+        id
+        Title
+        Email
+      }
+      ... on ComponentContactsContactPhone {
+        id
+        Title
+        Phone
+      }
+    }
+    Logo {
+      id
+      url
+      width
+      height
+    }
+    ApplicationProperties {
+      id
+      Title
+      Value
+      Link
+    }
+    ApplicationLinks {
+      __typename
+      ... on ComponentApplicationLinkChatBotLink {
+        id
+        Link
+      }
+      ... on ComponentApplicationLinkAppStoreLink {
+        id
+        Link
+      }
+      ... on ComponentApplicationLinkHomepageLink {
+        id
+        Link
+      }
+      ... on ComponentApplicationLinkVkMiniAppLink {
+        id
+        Link
+      }
+      ... on ComponentApplicationLinkGooglePlayLink {
+        id
+        Link
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetApplicationQuery__
+ *
+ * To run a query within a React component, call `useGetApplicationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetApplicationQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetApplicationQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetApplicationQuery(baseOptions: Apollo.QueryHookOptions<GetApplicationQuery, GetApplicationQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetApplicationQuery, GetApplicationQueryVariables>(GetApplicationDocument, options);
+      }
+export function useGetApplicationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetApplicationQuery, GetApplicationQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetApplicationQuery, GetApplicationQueryVariables>(GetApplicationDocument, options);
+        }
+export type GetApplicationQueryHookResult = ReturnType<typeof useGetApplicationQuery>;
+export type GetApplicationLazyQueryHookResult = ReturnType<typeof useGetApplicationLazyQuery>;
+export type GetApplicationQueryResult = Apollo.QueryResult<GetApplicationQuery, GetApplicationQueryVariables>;
+export const GetPrimaryCardsDocument = gql`
+    query GetPrimaryCards {
+  primaryCard {
+    Cards {
+      __typename
+      ... on ComponentCardsPrimaryCard {
+        id
+        Link
+        Title
+        Description
+        Image {
+          id
+          width
+          height
+          url
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetPrimaryCardsQuery__
+ *
+ * To run a query within a React component, call `useGetPrimaryCardsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPrimaryCardsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPrimaryCardsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetPrimaryCardsQuery(baseOptions?: Apollo.QueryHookOptions<GetPrimaryCardsQuery, GetPrimaryCardsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPrimaryCardsQuery, GetPrimaryCardsQueryVariables>(GetPrimaryCardsDocument, options);
+      }
+export function useGetPrimaryCardsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPrimaryCardsQuery, GetPrimaryCardsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPrimaryCardsQuery, GetPrimaryCardsQueryVariables>(GetPrimaryCardsDocument, options);
+        }
+export type GetPrimaryCardsQueryHookResult = ReturnType<typeof useGetPrimaryCardsQuery>;
+export type GetPrimaryCardsLazyQueryHookResult = ReturnType<typeof useGetPrimaryCardsLazyQuery>;
+export type GetPrimaryCardsQueryResult = Apollo.QueryResult<GetPrimaryCardsQuery, GetPrimaryCardsQueryVariables>;
+export const GetPrimaryBannersDocument = gql`
+    query GetPrimaryBanners {
+  primaryBanners {
+    id
+    Title
+    Link
+    Description
+    Image {
+      url
+      width
+      height
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetPrimaryBannersQuery__
+ *
+ * To run a query within a React component, call `useGetPrimaryBannersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPrimaryBannersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPrimaryBannersQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetPrimaryBannersQuery(baseOptions?: Apollo.QueryHookOptions<GetPrimaryBannersQuery, GetPrimaryBannersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPrimaryBannersQuery, GetPrimaryBannersQueryVariables>(GetPrimaryBannersDocument, options);
+      }
+export function useGetPrimaryBannersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPrimaryBannersQuery, GetPrimaryBannersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPrimaryBannersQuery, GetPrimaryBannersQueryVariables>(GetPrimaryBannersDocument, options);
+        }
+export type GetPrimaryBannersQueryHookResult = ReturnType<typeof useGetPrimaryBannersQuery>;
+export type GetPrimaryBannersLazyQueryHookResult = ReturnType<typeof useGetPrimaryBannersLazyQuery>;
+export type GetPrimaryBannersQueryResult = Apollo.QueryResult<GetPrimaryBannersQuery, GetPrimaryBannersQueryVariables>;
+export const GetArticleDocument = gql`
+    query GetArticle($id: ID!) {
+  newsArticle(id: $id) {
+    id
+    published_at
+    Title
+    Body
+    Cover {
+      url
+      width
+      height
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetArticleQuery__
+ *
+ * To run a query within a React component, call `useGetArticleQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetArticleQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetArticleQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetArticleQuery(baseOptions: Apollo.QueryHookOptions<GetArticleQuery, GetArticleQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetArticleQuery, GetArticleQueryVariables>(GetArticleDocument, options);
+      }
+export function useGetArticleLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetArticleQuery, GetArticleQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetArticleQuery, GetArticleQueryVariables>(GetArticleDocument, options);
+        }
+export type GetArticleQueryHookResult = ReturnType<typeof useGetArticleQuery>;
+export type GetArticleLazyQueryHookResult = ReturnType<typeof useGetArticleLazyQuery>;
+export type GetArticleQueryResult = Apollo.QueryResult<GetArticleQuery, GetArticleQueryVariables>;

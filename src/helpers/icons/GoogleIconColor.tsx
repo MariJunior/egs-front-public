@@ -1,0 +1,97 @@
+export const GoogleIconColor = () => {
+  return (
+    <svg width="26" height="29" viewBox="0 0 26 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M1.02685 1.35838C0.713996 1.69462 0.53418 2.21214 0.53418 2.88462V26.8046C0.53418 27.4771 0.713996 27.9946 1.03854 28.3192L1.12333 28.3908L14.5262 14.9879V14.6867L1.11164 1.28674L1.02685 1.35838Z"
+        fill="url(#paint0_linear)"
+        fillOpacity="0.3"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M18.9852 19.4731L14.5146 15.0011V14.6882L18.9867 10.2162L19.0832 10.2761L24.3724 13.2818C25.8869 14.1356 25.8869 15.542 24.3724 16.4074L19.0832 19.4131C19.0817 19.4131 18.9852 19.4731 18.9852 19.4731Z"
+        fill="url(#paint1_linear)"
+        fillOpacity="0.3"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M19.0816 19.4131L14.5145 14.8446L1.02686 28.3323C1.51952 28.8615 2.34843 28.9214 3.27529 28.4039L19.0816 19.4131Z"
+        fill="url(#paint2_linear)"
+        fillOpacity="0.3"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M19.0816 10.2776L3.27529 1.29845C2.34989 0.769238 1.51952 0.840873 1.02686 1.37009L14.5131 14.8446L19.0816 10.2776Z"
+        fill="url(#paint3_linear)"
+        fillOpacity="0.3"
+      />
+      <path
+        opacity="0.25"
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M3.27528 1.45489L24.3708 13.4397C25.0565 13.8242 25.4409 14.3286 25.5009 14.8461C25.5009 14.2818 25.1281 13.716 24.3708 13.2833L3.27528 1.29846C1.76073 0.433004 0.53418 1.15373 0.53418 2.88465V3.04107C0.53418 1.31016 1.76073 0.601125 3.27528 1.45489Z"
+        fill="white"
+        fillOpacity="0.3"
+      />
+      <defs>
+        <linearGradient
+          id="paint0_linear"
+          x1="13.3227"
+          y1="2.62751"
+          x2="-8.14642"
+          y2="8.34798"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#00A0FF" />
+          <stop offset="0.007" stopColor="#00A1FF" />
+          <stop offset="0.26" stopColor="#00BEFF" />
+          <stop offset="0.512" stopColor="#00D2FF" />
+          <stop offset="0.76" stopColor="#00DFFF" />
+          <stop offset="1" stopColor="#00E3FF" />
+        </linearGradient>
+        <linearGradient
+          id="paint1_linear"
+          x1="26.3432"
+          y1="14.8453"
+          x2="0.166182"
+          y2="14.8453"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#FFE000" />
+          <stop offset="0.409" stopColor="#FFBD00" />
+          <stop offset="0.775" stopColor="#FFA500" />
+          <stop offset="1" stopColor="#FF9C00" />
+        </linearGradient>
+        <linearGradient
+          id="paint2_linear"
+          x1="16.5982"
+          y1="17.3299"
+          x2="-0.637332"
+          y2="46.3384"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#FF3A44" />
+          <stop offset="1" stopColor="#C31162" />
+        </linearGradient>
+        <linearGradient
+          id="paint3_linear"
+          x1="-2.36833"
+          y1="-6.59854"
+          x2="5.32095"
+          y2="6.3571"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#32A071" />
+          <stop offset="0.069" stopColor="#2DA771" />
+          <stop offset="0.476" stopColor="#15CF74" />
+          <stop offset="0.801" stopColor="#06E775" />
+          <stop offset="1" stopColor="#00F076" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};
